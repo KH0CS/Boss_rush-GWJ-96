@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs7oxlswgna1u"
-path="res://.godot/imported/chick_sprite.png-fd5c0ae29edb45783d8561b406f6ef3f.ctex"
+uid="uid://eujy5j8tlopn"
+path="res://.godot/imported/ice_minion.png-0e84890ae9b4c43ac7b957577505106a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://chick_sprite.png"
-dest_files=["res://.godot/imported/chick_sprite.png-fd5c0ae29edb45783d8561b406f6ef3f.ctex"]
+source_file="res://assets/sprites/minions/ice_minion.png"
+dest_files=["res://.godot/imported/ice_minion.png-0e84890ae9b4c43ac7b957577505106a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cktqbd4jupiqc"
-path="res://.godot/imported/gun_sprite.png-22283c966e0d0c0da1d55b021642e00f.ctex"
+uid="uid://jew1sjk6ux1u"
+path="res://.godot/imported/lightning_minion.png-823c97bc415b1acc69c9a6eec31ae657.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/gun_sprite.png"
-dest_files=["res://.godot/imported/gun_sprite.png-22283c966e0d0c0da1d55b021642e00f.ctex"]
+source_file="res://assets/sprites/minions/lightning_minion.png"
+dest_files=["res://.godot/imported/lightning_minion.png-823c97bc415b1acc69c9a6eec31ae657.ctex"]
 
 [params]
 

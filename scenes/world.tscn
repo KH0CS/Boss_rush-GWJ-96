@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dlq1uwp72foeb"]
+
+[ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://bc07j1rtpw0sa" path="res://scenes/dummy.tscn" id="2_rwgxs"]
+
+[node name="World" type="Node2D" unique_id=26372252]
+
+[node name="Environment" type="Node2D" parent="." unique_id=961158938]
+
+[node name="Dummy" parent="Environment" unique_id=1587976061 instance=ExtResource("2_rwgxs")]
+position = Vector2(312, 122)
+
+[node name="Dummy2" parent="Environment" unique_id=730377653 instance=ExtResource("2_rwgxs")]
+position = Vector2(361, 228)
+
+[node name="Dummy3" parent="Environment" unique_id=570988794 instance=ExtResource("2_rwgxs")]
+position = Vector2(218, 205)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1512424558]
+
+[node name="Boss" type="Node2D" parent="Enemies" unique_id=730165501]
+
+[node name="Minions" type="Node2D" parent="Enemies" unique_id=426347225]
+
+[node name="Player" parent="." unique_id=389095423 instance=ExtResource("1_nnsk1")]
+position = Vector2(320, 181)
