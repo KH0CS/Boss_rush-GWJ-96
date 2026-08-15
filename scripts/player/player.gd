@@ -1,4 +1,7 @@
+class_name Player
 extends CharacterBody2D
+
+
 
 var speed = 125
 # Self explanitory this is your movement with the project input map very very basic
