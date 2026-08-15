@@ -32,7 +32,7 @@ window/stretch/scale_mode="integer"
 
 folder_colors={
 "res://assets/": "yellow",
-"res://enemies/": "red",
+"res://scenes/enemies/": "red",
 "res://testing/": "pink"
 }
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://hoc8rlae7nra"]
 
-[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://enemies/minions/MinionBase.tscn" id="2_u1ifg"]
+[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_u1ifg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ndpnn"]
 size = Vector2(20, 364)

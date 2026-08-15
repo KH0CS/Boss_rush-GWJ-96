@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://oinswt17sya4"
-path="res://.godot/imported/charge_bar.png-ffb9daaeebddef8d7192076f73b733e4.ctex"
+path="res://.godot/imported/charge_bar.png-e7c92200ef8d7ff9b36361ee7740735a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/charge_bar/charge_bar.png"
-dest_files=["res://.godot/imported/charge_bar.png-ffb9daaeebddef8d7192076f73b733e4.ctex"]
+source_file="res://assets/sprites/ui/charge_bar.png"
+dest_files=["res://.godot/imported/charge_bar.png-e7c92200ef8d7ff9b36361ee7740735a.ctex"]
 
 [params]
 

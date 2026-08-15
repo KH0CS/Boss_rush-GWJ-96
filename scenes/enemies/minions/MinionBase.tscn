@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d3hb374lpu7ki"]
 
-[ext_resource type="Script" uid="uid://bl0noyhdq3vdt" path="res://enemies/minions/minion_base.gd" id="1_pvhpb"]
+[ext_resource type="Script" uid="uid://bl0noyhdq3vdt" path="res://scenes/enemies/minions/minion_base.gd" id="1_pvhpb"]
 [ext_resource type="Texture2D" uid="uid://eujy5j8tlopn" path="res://assets/sprites/minions/ice_minion.png" id="2_3xvil"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ndpnn"]
