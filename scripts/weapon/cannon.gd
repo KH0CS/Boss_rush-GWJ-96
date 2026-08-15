@@ -23,6 +23,15 @@ var charge_time := 0.0
 @onready var gun_muzzle: Marker2D = %Marker2D
 @onready var vaccum: Area2D = %Vaccum
 
+
+func _input(event: InputEvent) -> void:
+	# Vaccum only active while right click is pressed
+	if Input.is_action_pressed("vacuum"):
+		vaccum.monitoring = true
+	else:
+		vaccum.monitoring = false
+
+
 func _process(delta):
 	# Calculate the angle to the mouse instead of instantly looking at it
 	var target_angle = (get_global_mouse_position() - global_position).angle()
@@ -55,6 +64,8 @@ func _process(delta):
 	if Input.is_action_just_released("shoot") and is_charging:
 		release_attack(charge_time)
 		is_charging = false
+		
+	
 
 func release_attack(time_held: float) -> void:
 	var charge_ratio := time_held / max_charge_time  # 0.0 to 1.0
@@ -83,6 +94,6 @@ func _on_vaccum_body_entered(body: Node2D) -> void:
 	if body is Minion:
 		body.start_collect(self)
 		
-		
+
 		
 		
