@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		charge_time += delta
 		charge_time = min(charge_time, max_charge_time)
 		
-		# Update UI for charging(does not exist yet)
+		# Update UI for charging
 		update_charge_visual(charge_time / max_charge_time)
 
 	if Input.is_action_just_released("shoot") and is_charging:
@@ -53,10 +53,12 @@ func do_charged_attack(power: float) -> void:
 	var bullet_spawn = BULLET.instantiate()
 	get_tree().root.add_child(bullet_spawn)
 	
-	
 	bullet_spawn.global_position = gun_muzzle.global_position
 	bullet_spawn.rotation = rotation
-	bullet_spawn.scale = Vector2(1, 1) * (1 + power)
+	
+	# Scales the projectile size based on the power
+	# This is 100% temporary, I wanted to see if charged attacks are working without any UI
+	bullet_spawn.scale = Vector2(2, 2) * (1 + power)
 
 func update_charge_visual(ratio: float) -> void:
 	pass # update a charge bar, charge effects, sprite cahnges for charging, etc...

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://3w7d8nqis2ui"]
 
 [ext_resource type="Script" uid="uid://bll3fe38ivkdj" path="res://scenes/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://cs7oxlswgna1u" path="res://chick_sprite.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://dq8f2nul1fkud" path="res://chick_sprite.png" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://nxdpcwcr5msq" path="res://scenes/gun.tscn" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_og67c"]
