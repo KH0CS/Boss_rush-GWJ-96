@@ -10,4 +10,13 @@ script = ExtResource("1_0wvxs")
 texture = ExtResource("2_hako5")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1258637204]
+unique_name_in_owner = true
 position = Vector2(8, 0)
+
+[node name="Vaccum" type="Area2D" parent="." unique_id=803435418]
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vaccum" unique_id=1337472986]
+polygon = PackedVector2Array(0, 0, 27, 14, 31, 0, 28, -14)
+
+[connection signal="body_entered" from="Vaccum" to="." method="_on_vaccum_body_entered"]

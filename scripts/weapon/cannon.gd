@@ -1,18 +1,28 @@
+class_name Cannon
 extends Node2D
+
+signal storage_changed(current_storage: Array)
+
 
 const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 
-@onready var gun_muzzle: Marker2D = $Marker2D
-
+@export var player: Player
 # Charge time settings
-@export var min_charge_to_release := 0.2  # below this = "tap", no charge
-@export var max_charge_time := 1.5  # seconds to reach full charge
+@export var min_charge_to_release : float = 0.2  # below this = "tap", no charge
+@export var max_charge_time : float = 1.5  # seconds to reach full charge
 @export var gun_rotation_speed: float = 15.0  # higher = snappier, lower = smoother
+
+@export var gun_storage: Array[Type.elements] = []:
+	set(value):
+		gun_storage = value
+		storage_changed.emit()
 
 var is_charging := false
 var charge_time := 0.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+@onready var gun_muzzle: Marker2D = %Marker2D
+@onready var vaccum: Area2D = %Vaccum
+
 func _process(delta):
 	# Calculate the angle to the mouse instead of instantly looking at it
 	var target_angle = (get_global_mouse_position() - global_position).angle()
@@ -66,3 +76,13 @@ func do_charged_attack(power: float) -> void:
 
 func update_charge_visual(ratio: float) -> void:
 	pass # update a charge bar, charge effects, sprite cahnges for charging, etc...
+
+
+func _on_vaccum_body_entered(body: Node2D) -> void:
+	## check if its minion
+	if body is Minion:
+		body.start_collect(self)
+		
+		
+		
+		

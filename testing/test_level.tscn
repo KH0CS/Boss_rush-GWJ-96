@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://hoc8rlae7nra"]
 
+[ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="2_nnbuc"]
 [ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_u1ifg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ndpnn"]
@@ -44,3 +45,6 @@ texture = "uid://jew1sjk6ux1u"
 position = Vector2(304, 187)
 element = 1
 texture = "uid://eujy5j8tlopn"
+
+[node name="Player" parent="." unique_id=389095423 instance=ExtResource("2_nnbuc")]
+position = Vector2(259, 122)
