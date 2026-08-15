@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c6f7ob66ujlmv"]
+
+[ext_resource type="Script" uid="uid://4is1my64awmc" path="res://enemies/minions/minion_base.gd" id="2_ewojt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ndpnn"]
+radius = 7.0
+
+[node name="MinionBase" type="Node2D" unique_id=1668527012]
+position = Vector2(320, 179)
+script = ExtResource("2_ewojt")
+texture = "uid://bb3nee0fj330i"
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=1214300050]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1503544066]
+unique_name_in_owner = true
+
+[node name="PickupHitbox" type="Area2D" parent="." unique_id=918859692]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupHitbox" unique_id=1110391360]
+shape = SubResource("CircleShape2D_ndpnn")
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=1595534380]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

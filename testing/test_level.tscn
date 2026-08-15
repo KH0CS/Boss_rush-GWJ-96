@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://hoc8rlae7nra"]
+
+[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://enemies/minions/MinionBase.tscn" id="2_u1ifg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndpnn"]
+size = Vector2(20, 364)
+
+[node name="TestLevel" type="Node2D" unique_id=1893449969]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2015089691]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1914820997]
+position = Vector2(176, 181)
+shape = SubResource("RectangleShape2D_ndpnn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1409574504]
+position = Vector2(381, 174)
+shape = SubResource("RectangleShape2D_ndpnn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=652962097]
+position = Vector2(277, 48)
+rotation = -1.5898055
+shape = SubResource("RectangleShape2D_ndpnn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=183459460]
+position = Vector2(258, 304)
+rotation = -1.5753522
+shape = SubResource("RectangleShape2D_ndpnn")
+
+[node name="MinionTest" parent="." unique_id=1959686566 instance=ExtResource("2_u1ifg")]
+position = Vector2(224, 175)
+
+[node name="MinionTest3" parent="." unique_id=1738651851 instance=ExtResource("2_u1ifg")]
+position = Vector2(227, 233)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest4" parent="." unique_id=618482367 instance=ExtResource("2_u1ifg")]
+position = Vector2(304, 229)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest2" parent="." unique_id=1384903562 instance=ExtResource("2_u1ifg")]
+position = Vector2(304, 187)
+element = 1
+texture = "uid://eujy5j8tlopn"
