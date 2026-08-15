@@ -1,11 +1,11 @@
 extends Area2D
 
-@export var speed: float = 250.0
+@export var speed: float = 150.0
 @export var power: float = 0.0
 #var shooter: Node2D = null  # optional: track who fired it
 
 func _ready() -> void:
-	scale = Vector2(2, 2) * (1.0 + power)
+	scale = Vector2(1, 1) * (1.0 + power)
 	speed *= 1+power
 	print(speed)
 	

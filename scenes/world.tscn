@@ -6,13 +6,13 @@
 [node name="World" type="Node2D" unique_id=26372252]
 
 [node name="Player" parent="." unique_id=389095423 instance=ExtResource("1_nnsk1")]
-position = Vector2(559, 322)
+position = Vector2(320, 181)
 
 [node name="Dummy" parent="." unique_id=1587976061 instance=ExtResource("2_rwgxs")]
-position = Vector2(539, 119)
+position = Vector2(312, 122)
 
 [node name="Dummy2" parent="." unique_id=730377653 instance=ExtResource("2_rwgxs")]
-position = Vector2(772, 389)
+position = Vector2(361, 228)
 
 [node name="Dummy3" parent="." unique_id=570988794 instance=ExtResource("2_rwgxs")]
-position = Vector2(259, 382)
+position = Vector2(218, 205)

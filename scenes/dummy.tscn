@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://bc07j1rtpw0sa"]
 
-[ext_resource type="Texture2D" uid="uid://dnav8du0mcxqq" path="res://sprites/dummy.png" id="1_gtj52"]
+[ext_resource type="Texture2D" uid="uid://dnav8du0mcxqq" path="res://assets/sprites/dummy/dummy.png" id="1_gtj52"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nnsk1"]
+radius = 5.0
+height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rwgxs"]
+radius = 5.0
+height = 16.0
 
 [node name="Dummy" type="CharacterBody2D" unique_id=1587976061]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1089929855]
-scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_gtj52")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1387803308]
