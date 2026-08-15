@@ -4,7 +4,7 @@ const speed = 450
 
 
 # This is taking care of the position of the bulelt every frame so it looks smooth. 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	position += transform.x * speed * delta
 
 
