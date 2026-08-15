@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="Boss_Rush"
-run/main_scene="uid://3w7d8nqis2ui"
+run/main_scene="uid://dlq1uwp72foeb"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+run/layer_8="pickup range"
+run/layer_7="enemy_hurtbox"
 
 [display]
 
@@ -56,6 +58,17 @@ reload={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="PlayerHitbox"
+2d_physics/layer_4="PlayerHurtbox"
+2d_physics/layer_5="Enemy"
+2d_physics/layer_6="EnemyHitboxs"
+2d_physics/layer_7="EnemyHurtbox"
+2d_physics/layer_8="Pickup"
 
 [physics]
 

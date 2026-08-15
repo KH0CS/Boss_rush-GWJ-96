@@ -1,12 +1,13 @@
-extends Node2D
+extends Area2D
 
-const speed = 450
+# Use 'var' instead of 'const' so other scripts can rewrite it
+@export var speed: float = 450.0 
+@export var power: float = 0.0
 
+func _ready() -> void:
+	# Scales the projectile size dynamically based on the passed power
+	scale = Vector2(1, 1) * (1.0 + power)
 
-# This is taking care of the position of the bulelt every frame so it looks smooth. 
 func _physics_process(delta: float) -> void:
+	# Moves smoothly every frame using the assigned speed
 	position += transform.x * speed * delta
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	queue_free()

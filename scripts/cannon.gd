@@ -1,6 +1,6 @@
 extends Node2D
 
-const BULLET = preload("res://scenes/bullet.tscn")
+const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 
 @onready var gun_muzzle: Marker2D = $Marker2D
 
@@ -54,15 +54,15 @@ func release_attack(time_held: float) -> void:
 		do_charged_attack(charge_ratio)
 
 func do_charged_attack(power: float) -> void:
-	var bullet_spawn = BULLET.instantiate()
-	get_tree().root.add_child(bullet_spawn)
+	var bullet_spawn = PROJECTILE.instantiate()
 	
 	bullet_spawn.global_position = gun_muzzle.global_position
 	bullet_spawn.rotation = rotation
 	
-	# Scales the projectile size based on the power
-	# This is 100% temporary, I wanted to see if charged attacks are working without any UI
-	bullet_spawn.scale = Vector2(2, 2) * (1 + power)
+	# Set projectile charge
+	bullet_spawn.power = power
+	
+	get_tree().root.add_child(bullet_spawn)
 
 func update_charge_visual(ratio: float) -> void:
 	pass # update a charge bar, charge effects, sprite cahnges for charging, etc...

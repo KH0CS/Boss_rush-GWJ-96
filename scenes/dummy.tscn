@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bc07j1rtpw0sa"]
+
+[ext_resource type="Texture2D" uid="uid://dnav8du0mcxqq" path="res://sprites/dummy.png" id="1_gtj52"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nnsk1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rwgxs"]
+
+[node name="Dummy" type="CharacterBody2D" unique_id=1587976061]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1089929855]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_gtj52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1387803308]
+shape = SubResource("CapsuleShape2D_nnsk1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1354016363]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=35637169]
+shape = SubResource("CapsuleShape2D_rwgxs")

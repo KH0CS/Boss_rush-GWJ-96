@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://nxdpcwcr5msq"]
+
+[ext_resource type="Script" uid="uid://bwi6fqaak25di" path="res://scripts/cannon.gd" id="1_0wvxs"]
+[ext_resource type="Texture2D" uid="uid://0syu3654gky8" path="res://sprites/gun_sprite.png" id="2_hako5"]
+
+[node name="Cannon" type="Node2D" unique_id=298548447]
+script = ExtResource("1_0wvxs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1459979105]
+scale = Vector2(3, 3)
+texture = ExtResource("2_hako5")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1258637204]
+position = Vector2(28, -5)

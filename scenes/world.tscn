@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dlq1uwp72foeb"]
+
+[ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://bc07j1rtpw0sa" path="res://scenes/dummy.tscn" id="2_rwgxs"]
+
+[node name="World" type="Node2D" unique_id=26372252]
+
+[node name="Player" parent="." unique_id=389095423 instance=ExtResource("1_nnsk1")]
+position = Vector2(559, 322)
+
+[node name="Dummy" parent="." unique_id=1587976061 instance=ExtResource("2_rwgxs")]
+position = Vector2(539, 119)
+
+[node name="Dummy2" parent="." unique_id=730377653 instance=ExtResource("2_rwgxs")]
+position = Vector2(772, 389)
+
+[node name="Dummy3" parent="." unique_id=570988794 instance=ExtResource("2_rwgxs")]
+position = Vector2(259, 382)
