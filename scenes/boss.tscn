@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://qf6sqsbtd315"]
+
+[ext_resource type="Texture2D" uid="uid://yavdj5eiefpa" path="res://assets/sprites/boss/Worm_boss_head.png" id="1_dlmty"]
+
+[node name="Node2D" type="Node2D" unique_id=1657483646]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1356702983]
+position = Vector2(98, 65)
+texture = ExtResource("1_dlmty")
