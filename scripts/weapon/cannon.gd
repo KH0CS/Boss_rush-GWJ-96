@@ -16,6 +16,9 @@ const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 	set(value):
 		gun_storage = value
 		storage_changed.emit()
+@export var max_ammo_ammount: int = 3
+var possible_combos: Array = []
+
 
 var is_charging := false
 var charge_time := 0.0
@@ -24,9 +27,9 @@ var charge_time := 0.0
 @onready var vaccum: Area2D = %Vaccum
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	# Vaccum only active while right click is pressed
-	if Input.is_action_pressed("vacuum"):
+	if Input.is_action_pressed("vacuum") and gun_storage.size() < max_ammo_ammount:
 		vaccum.monitoring = true
 	else:
 		vaccum.monitoring = false
@@ -49,7 +52,7 @@ func _process(delta):
 		scale.y = 1
 	
 	# Start charging when you click "click"
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and gun_storage.size() == 3:
 		is_charging = true
 		charge_time = 0.0
 	
@@ -60,6 +63,9 @@ func _process(delta):
 		
 		# Update UI for charging
 		update_charge_visual(charge_time / max_charge_time)
+	else:
+		charge_time = 0.0
+		
 
 	if Input.is_action_just_released("shoot") and is_charging:
 		release_attack(charge_time)
@@ -75,25 +81,47 @@ func release_attack(time_held: float) -> void:
 		do_charged_attack(charge_ratio)
 
 func do_charged_attack(power: float) -> void:
-	var bullet_spawn = PROJECTILE.instantiate()
-	
-	bullet_spawn.global_position = gun_muzzle.global_position
-	bullet_spawn.rotation = rotation
-	
-	# Set projectile charge
-	bullet_spawn.power = power
-	
-	get_tree().root.add_child(bullet_spawn)
+	## figure out the projectiles
+	var shot = ElementalCombos.get_elemental_combo(gun_storage)
+	var rot_i = 0
+	for projectile_data in shot.projectiles:
+		var bullet_spawn = PROJECTILE.instantiate() as Projectile
+		# give bullet new data 
+		bullet_spawn.data = projectile_data
+		bullet_spawn.target_type = shot.target_type
+		bullet_spawn.global_position = gun_muzzle.global_position
+		
+		# rotate and add spread
+		bullet_spawn.rotation = rotation + (shot.spread * rot_i)
+		rot_i += 1
+		
+		# Set projectile charge
+		bullet_spawn.power = power * 0.1
+		
+		get_tree().root.add_child(bullet_spawn)
+		await get_tree().create_timer(shot.interval).timeout
 
-func update_charge_visual(ratio: float) -> void:
+	## remove elementals from gun
+	gun_storage.pop_front()
+	gun_storage.pop_front()
+	gun_storage.pop_front()
+
+
+func update_charge_visual(_ratio: float) -> void:
 	pass # update a charge bar, charge effects, sprite cahnges for charging, etc...
+
+
+
+func add_ammo(ammo_type: Type.elements) -> void:
+	gun_storage.append(ammo_type)
+	print(gun_storage)
+
 
 
 func _on_vaccum_body_entered(body: Node2D) -> void:
 	## check if its minion
 	if body is Minion:
 		body.start_collect(self)
-		
-
-		
-		
+	
+	
+	

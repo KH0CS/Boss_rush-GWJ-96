@@ -31,6 +31,9 @@ shape = SubResource("RectangleShape2D_ndpnn")
 [node name="MinionTest" parent="." unique_id=1959686566 instance=ExtResource("2_u1ifg")]
 position = Vector2(224, 175)
 
+[node name="MinionTest5" parent="." unique_id=485308313 instance=ExtResource("2_u1ifg")]
+position = Vector2(249, 188)
+
 [node name="MinionTest3" parent="." unique_id=1738651851 instance=ExtResource("2_u1ifg")]
 position = Vector2(227, 233)
 element = 2

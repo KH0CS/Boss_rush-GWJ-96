@@ -43,5 +43,12 @@ directory = "res://scenes/game/levels"
 
 [node name="LevelContainer" type="Node" parent="." unique_id=437554331]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="LevelContainer" unique_id=850717352]
+
+[node name="ProgressBar" type="ProgressBar" parent="LevelContainer/CanvasLayer" unique_id=567845491]
+custom_minimum_size = Vector2(100, 0)
+offset_right = 4.0
+offset_bottom = 27.0
+
 [node name="LevelLoadingScreen" parent="." unique_id=816430938 instance=ExtResource("11_gc57s")]
 visible = false

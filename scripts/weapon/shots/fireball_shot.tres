@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Shot" format=3 uid="uid://8ohx3jj03typ"]
+
+[ext_resource type="Script" uid="uid://c8okbg2doh58w" path="res://resources/projectiles/projectile_data.gd" id="1_u31fl"]
+[ext_resource type="Script" uid="uid://bdta8y6hpdju8" path="res://scripts/weapon/shots/shot_base.gd" id="2_m7vpn"]
+
+[sub_resource type="Resource" id="Resource_pycx1"]
+script = ExtResource("1_u31fl")
+name = "Fireball"
+desc = "fire go boom"
+texture = "uid://bb3nee0fj330i"
+metadata/_custom_type_script = "uid://c8okbg2doh58w"
+
+[sub_resource type="Resource" id="Resource_r0f3c"]
+script = ExtResource("1_u31fl")
+texture = "uid://bb3nee0fj330i"
+metadata/_custom_type_script = "uid://c8okbg2doh58w"
+
+[resource]
+script = ExtResource("2_m7vpn")
+projectiles = Array[ExtResource("1_u31fl")]([SubResource("Resource_pycx1"), SubResource("Resource_r0f3c")])
+spread = 0.1
+target_type = 1
+metadata/_custom_type_script = "uid://bdta8y6hpdju8"

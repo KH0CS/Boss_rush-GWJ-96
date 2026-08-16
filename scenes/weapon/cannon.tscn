@@ -7,14 +7,16 @@
 script = ExtResource("1_0wvxs")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1459979105]
+position = Vector2(18, 0)
 texture = ExtResource("2_hako5")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1258637204]
 unique_name_in_owner = true
-position = Vector2(8, 0)
+position = Vector2(26, 0)
 
 [node name="Vaccum" type="Area2D" parent="." unique_id=803435418]
 unique_name_in_owner = true
+position = Vector2(18, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vaccum" unique_id=1337472986]
 polygon = PackedVector2Array(0, 0, 27, 14, 31, 0, 28, -14)
