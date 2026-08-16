@@ -1,33 +1,25 @@
+class_name Projectile
 extends Area2D
 
-@export var speed: float = 150.0
-@export var power: float = 0.0
+
+@export var data: ProjectileData
+var power: float = 0.0
+var distance_traveled: float = 0
 #var shooter: Node2D = null  # optional: track who fired it
+@onready var visual: Sprite2D = %visual
+
+var target_type: Type.target
 
 func _ready() -> void:
 	scale = Vector2(1, 1) * (1.0 + power)
-	speed *= 1+power
-	print(speed)
-	
-	# handle git detection
-	#area_entered.connect(_on_area_entered)
-	#body_entered.connect(_on_body_entered)
+	data.speed *= 1+power
+	if data.texture:
+		visual.texture = load(data.texture)
+
 
 func _physics_process(delta: float) -> void:
-	position += transform.x * speed * delta
-
-#func _on_area_entered(area: Area2D) -> void:
-	#_handle_hit(area)
-
-#func _on_body_entered(body: Node2D) -> void:
-	#_handle_hit(body)
-
-#func _handle_hit(target: Node) -> void:
-	#if target == shooter:
-	#	return
-	#if target.has_method("take_damage"):
-	#	target.take_damage(power * 10)  # example damage scaling
-	#queue_free()
+	position += transform.x * data.speed * delta
+	distance_traveled += data.speed * delta
+	if distance_traveled >= data.max_distance:
+		queue_free()
 	
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	queue_free()

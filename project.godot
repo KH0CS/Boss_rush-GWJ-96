@@ -27,6 +27,7 @@ AppConfig="*uid://cjke6crjg14a0"
 SceneLoader="*uid://cbwmrnp0af35y"
 ProjectMusicController="*uid://r5t485lr3p7t"
 ProjectUISoundController="*uid://cc37235kj4384"
+ElementalCombos="*uid://cq4h8gf68dlrc"
 
 [display]
 
@@ -46,7 +47,10 @@ enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
 
 folder_colors={
 "res://assets/": "yellow",
+"res://autoloads/": "blue",
+"res://resources/": "orange",
 "res://scenes/enemies/": "red",
+"res://scripts/": "teal",
 "res://testing/": "pink"
 }
 
