@@ -161,3 +161,4 @@ position = Vector2(64, 8)
 sprite_frames = SubResource("SpriteFrames_0x4cu")
 animation = &"idle_charge"
 frame_progress = 0.7374001
+speed_scale = 3.0

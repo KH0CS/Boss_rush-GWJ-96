@@ -1,6 +1,7 @@
 extends Control
 
 @onready var charge_bar = $ChargeBar
+@onready var charge_indicator = $ChargeBar/Indicators
 
 func _ready():
 	# Find the Player in the scene tree
@@ -10,3 +11,4 @@ func _ready():
 	#	player.charge_changed.connect(_set_charge)
 	
 	print("ui loaded")
+	charge_indicator.play("idle_charge")
