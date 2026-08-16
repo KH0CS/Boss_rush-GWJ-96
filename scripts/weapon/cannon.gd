@@ -106,8 +106,9 @@ func do_charged_attack(power: float) -> void:
 	gun_storage.pop_front()
 	gun_storage.pop_front()
 
-#current: float, cannon_status: Cannon.charging_states
 func update_charge_visual(current_charge: float, minimum_charge, max_charge: float) -> void:
+	# Currently just changes the bar
+	# TODO: Add indicator(Charging, Full Charged, Failed to Shoot)
 	var charge = min((current_charge/max_charge) * 100, 100)
 	
 	charge_status.emit(charge)
