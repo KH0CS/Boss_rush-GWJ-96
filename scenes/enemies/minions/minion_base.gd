@@ -18,7 +18,7 @@ var current_direction: Vector2
 
 var collect_speed: float = 100
 ## given when sucked, so it can follow to correct location
-var gun_marker: Cannon
+var gun: Cannon
 
 
 @onready var visual: Sprite2D = %Visual
@@ -38,10 +38,10 @@ func _process(delta: float) -> void:
 	else:
 		visual.flip_h = false
 
-	## if we have gun marker we can collect otherwise roam
-	if gun_marker:
-		if global_position.distance_to(gun_marker.global_position) > 30:
-			velocity = global_position.direction_to(gun_marker.global_position) * collect_speed
+	## if we have gun we can collect otherwise roam
+	if gun:
+		if global_position.distance_to(gun.global_position) > 30:
+			velocity = global_position.direction_to(gun.global_position) * collect_speed
 		else:
 			_on_collect()
 	else:
@@ -68,13 +68,14 @@ func _get_random_direction() -> Vector2:
 func _on_move_timer_timeout() -> void:
 	current_direction = _get_random_direction()
 
-func start_collect( gun: Cannon) -> void:
-	gun_marker = gun
+func start_collect(cannon: Cannon) -> void:
+	gun = cannon
 	
 func _on_collect():
 	## maybe play animation
 	
 	## send data 
+	gun.add_ammo(element)
 	collected.emit(element)
 	##queue free
 	queue_free()

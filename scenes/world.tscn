@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dlq1uwp72foeb"]
 
 [ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_71j4m"]
 [ext_resource type="PackedScene" uid="uid://bc07j1rtpw0sa" path="res://scenes/dummy.tscn" id="2_rwgxs"]
-[ext_resource type="PackedScene" uid="uid://onpx17iu5e0m" path="res://scenes/ui/hud.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://h8rr6hjm3a3q" path="res://scenes/enemy_spawner.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://onpx17iu5e0m" path="res://scenes/ui/hud.tscn" id="4_k0juu"]
 
 [node name="World" type="Node2D" unique_id=26372252]
 
@@ -23,9 +25,74 @@ position = Vector2(218, 205)
 
 [node name="Minions" type="Node2D" parent="Enemies" unique_id=426347225]
 
+[node name="MinionTest" parent="Enemies/Minions" unique_id=1959686566 instance=ExtResource("2_71j4m")]
+position = Vector2(224, 175)
+
+[node name="MinionTest5" parent="Enemies/Minions" unique_id=42082193 instance=ExtResource("2_71j4m")]
+position = Vector2(249, 188)
+
+[node name="MinionTest3" parent="Enemies/Minions" unique_id=1965306349 instance=ExtResource("2_71j4m")]
+position = Vector2(227, 233)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest4" parent="Enemies/Minions" unique_id=2050085580 instance=ExtResource("2_71j4m")]
+position = Vector2(304, 229)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest2" parent="Enemies/Minions" unique_id=1373307301 instance=ExtResource("2_71j4m")]
+position = Vector2(304, 187)
+element = 1
+texture = "uid://eujy5j8tlopn"
+
+[node name="MinionTest6" parent="Enemies/Minions" unique_id=1765512510 instance=ExtResource("2_71j4m")]
+position = Vector2(224, 175)
+
+[node name="MinionTest7" parent="Enemies/Minions" unique_id=2117473302 instance=ExtResource("2_71j4m")]
+position = Vector2(249, 188)
+
+[node name="MinionTest8" parent="Enemies/Minions" unique_id=1632395141 instance=ExtResource("2_71j4m")]
+position = Vector2(227, 233)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest9" parent="Enemies/Minions" unique_id=1089442366 instance=ExtResource("2_71j4m")]
+position = Vector2(304, 229)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest10" parent="Enemies/Minions" unique_id=1785612759 instance=ExtResource("2_71j4m")]
+position = Vector2(304, 187)
+element = 1
+texture = "uid://eujy5j8tlopn"
+
+[node name="MinionTest11" parent="Enemies/Minions" unique_id=899759244 instance=ExtResource("2_71j4m")]
+position = Vector2(224, 175)
+
+[node name="MinionTest12" parent="Enemies/Minions" unique_id=1969879156 instance=ExtResource("2_71j4m")]
+position = Vector2(249, 188)
+
+[node name="MinionTest13" parent="Enemies/Minions" unique_id=1906100908 instance=ExtResource("2_71j4m")]
+position = Vector2(227, 233)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest14" parent="Enemies/Minions" unique_id=594922158 instance=ExtResource("2_71j4m")]
+position = Vector2(304, 229)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest15" parent="Enemies/Minions" unique_id=2145293657 instance=ExtResource("2_71j4m")]
+position = Vector2(304, 187)
+element = 1
+texture = "uid://eujy5j8tlopn"
+
 [node name="Player" parent="." unique_id=389095423 instance=ExtResource("1_nnsk1")]
 position = Vector2(320, 181)
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=813616220]
+[node name="enemy_spawner" parent="." unique_id=1075598057 instance=ExtResource("3_4wyf3")]
 
-[node name="HUD" parent="UI" unique_id=1849573580 instance=ExtResource("3_4wyf3")]
+[node name="UI" type="CanvasLayer" parent="." unique_id=863397374]
+
+[node name="HUD" parent="UI" unique_id=1849573580 instance=ExtResource("4_k0juu")]

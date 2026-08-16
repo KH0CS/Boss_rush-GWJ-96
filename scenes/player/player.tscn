@@ -9,9 +9,9 @@
 radius = 8.0
 height = 16.0
 
-[node name="Player" type="CharacterBody2D" unique_id=389095423]
+[node name="Player" type="CharacterBody2D" unique_id=389095423 node_paths=PackedStringArray("gun")]
 script = ExtResource("1_g2els")
-metadata/_edit_group_ = true
+gun = NodePath("Cannon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1583880687]
 shape = SubResource("CapsuleShape2D_og67c")
@@ -19,10 +19,24 @@ shape = SubResource("CapsuleShape2D_og67c")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=325235048]
 texture = ExtResource("2_g2els")
 
-[node name="Cannon" parent="." unique_id=298548447 node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
+[node name="Cannon" parent="." unique_id=298548447 instance=ExtResource("3_qhqgy")]
 unique_name_in_owner = true
-position = Vector2(6, 3)
-player = NodePath("..")
+min_charge_to_release = null
+max_charge_time = null
+gun_rotation_speed = null
+gun_storage = null
+max_ammo_ammount = null
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=151585069]
 script = ExtResource("4_lvxji")
+
+[node name="ChargeBar" type="ProgressBar" parent="." unique_id=1791991868]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 4)
+custom_maximum_size = Vector2(-1, 4)
+offset_left = -11.0
+offset_top = 11.0
+offset_right = 11.0
+offset_bottom = 15.0
+step = 0.001
+show_percentage = false
