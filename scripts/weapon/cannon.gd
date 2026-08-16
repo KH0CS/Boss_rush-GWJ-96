@@ -1,7 +1,7 @@
 class_name Cannon
 extends Node2D
 
-signal storage_changed(current_storage: Array)
+#signal storage_changed(current_storage: Array[Type.elements])
 signal charge_status(current_storage: Array)
 
 const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
@@ -12,12 +12,14 @@ const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 @export var max_charge_time : float = 1.5  # seconds to reach full charge
 @export var gun_rotation_speed: float = 15.0  # higher = snappier, lower = smoother
 
-@export var gun_storage: Array[Type.elements] = []:
-	set(value):
-		gun_storage = value
-		storage_changed.emit()
+@export var gun_storage: Array[Type.elements] = []
+		#:
+	#set(value):
+		#gun_storage = value
+		#EventBus.storage_changed.emit(gun_storage)
 @export var max_ammo_ammount: int = 3
-var possible_combos: Array = []
+@export var max_storage_size: int = 10
+
 
 
 var is_charging := false
@@ -32,7 +34,7 @@ var charge_time := 0.0:
 
 func _input(_event: InputEvent) -> void:
 	# Vaccum only active while right click is pressed
-	if Input.is_action_pressed("vacuum") and gun_storage.size() < max_ammo_ammount:
+	if Input.is_action_pressed("vacuum") and gun_storage.size() < max_storage_size:
 		vaccum.monitoring = true
 	else:
 		vaccum.monitoring = false
@@ -55,9 +57,10 @@ func _process(delta):
 		scale.y = 1
 	
 	# Start charging when you click "click"
-	if Input.is_action_just_pressed("shoot") and gun_storage.size() == 3:
+	if Input.is_action_just_pressed("shoot") and gun_storage.size() >= 3:
 		is_charging = true
 		charge_time = 0.0
+
 	
 	# Add charge using the delta
 	if is_charging:
@@ -81,8 +84,14 @@ func release_attack(time_held: float) -> void:
 		do_charged_attack(charge_ratio)
 
 func do_charged_attack(power: float) -> void:
+	## Copy the first 3 elements from gun_storage
+	var barrel: Array[Type.elements] = []
+	for i in range(max_ammo_ammount):
+		barrel.append(gun_storage[i])
+	
+	
 	## figure out the projectiles
-	var shot = ElementalCombos.get_elemental_combo(gun_storage)
+	var shot = ElementalCombos.get_elemental_combo(barrel)
 	var rot_i = 0
 	for projectile_data in shot.projectiles:
 		var bullet_spawn = PROJECTILE.instantiate() as Projectile
@@ -105,6 +114,8 @@ func do_charged_attack(power: float) -> void:
 	gun_storage.pop_front()
 	gun_storage.pop_front()
 	gun_storage.pop_front()
+	EventBus.storage_changed.emit(gun_storage)
+	
 
 func update_charge_visual(current_charge: float, minimum_charge, max_charge: float) -> void:
 	# Currently just changes the bar
@@ -118,6 +129,7 @@ func update_charge_visual(current_charge: float, minimum_charge, max_charge: flo
 func add_ammo(ammo_type: Type.elements) -> void:
 	gun_storage.append(ammo_type)
 	print(gun_storage)
+	EventBus.storage_changed.emit(gun_storage)
 
 
 

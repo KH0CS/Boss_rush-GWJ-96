@@ -3,6 +3,7 @@ extends Area2D
 
 
 @export var data: ProjectileData
+
 var power: float = 0.0
 var distance_traveled: float = 0
 #var shooter: Node2D = null  # optional: track who fired it
@@ -23,3 +24,8 @@ func _physics_process(delta: float) -> void:
 	if distance_traveled >= data.max_distance:
 		queue_free()
 	
+
+#func _on_body_entered(body: Node2D) -> void:
+	#if body is target_type:
+		#if body.has_method(take_damage):
+			#body.take_damage()
