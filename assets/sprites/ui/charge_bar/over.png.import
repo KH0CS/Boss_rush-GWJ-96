@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oinswt17sya4"
-path="res://.godot/imported/charge_bar.png-e7c92200ef8d7ff9b36361ee7740735a.ctex"
+uid="uid://berfofv3p56v4"
+path="res://.godot/imported/over.png-4c213e6751d9596a39bf26f5f43db366.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/charge_bar.png"
-dest_files=["res://.godot/imported/charge_bar.png-e7c92200ef8d7ff9b36361ee7740735a.ctex"]
+source_file="res://assets/sprites/ui/charge_bar/over.png"
+dest_files=["res://.godot/imported/over.png-4c213e6751d9596a39bf26f5f43db366.ctex"]
 
 [params]
 
