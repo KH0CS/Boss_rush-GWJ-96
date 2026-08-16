@@ -1,53 +1,143 @@
 [gd_scene format=3 uid="uid://hoc8rlae7nra"]
 
+[ext_resource type="Script" uid="uid://dqbdpujw5i7ry" path="res://testing/test_level.gd" id="1_5coqi"]
 [ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="2_nnbuc"]
 [ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_u1ifg"]
+[ext_resource type="Script" uid="uid://b3u2tcc3kjf7h" path="res://testing/progress_bar_test.gd" id="3_nnbuc"]
+[ext_resource type="Script" uid="uid://n158kqdd31j5" path="res://testing/gun_storage_visual.gd" id="4_2tmgr"]
+[ext_resource type="Texture2D" uid="uid://bb3nee0fj330i" path="res://assets/sprites/minions/fire_minion.png" id="4_u5ya3"]
+[ext_resource type="Texture2D" uid="uid://cpg8omxk0vo2e" path="res://assets/sprites/ui/health bar/health_bar_under.png" id="6_tegp7"]
+[ext_resource type="Texture2D" uid="uid://bwj8kneuej84y" path="res://assets/sprites/ui/health bar/health_bar_outline.png" id="7_5coqi"]
+[ext_resource type="Texture2D" uid="uid://36rliefn0d5o" path="res://assets/sprites/ui/health bar/health_bar_progress.png" id="8_tu775"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ndpnn"]
-size = Vector2(20, 364)
+size = Vector2(27.264038, 628.0924)
 
 [node name="TestLevel" type="Node2D" unique_id=1893449969]
+script = ExtResource("1_5coqi")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2015089691]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1914820997]
-position = Vector2(176, 181)
+position = Vector2(5, 181)
 shape = SubResource("RectangleShape2D_ndpnn")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1409574504]
-position = Vector2(381, 174)
+position = Vector2(626, 185)
 shape = SubResource("RectangleShape2D_ndpnn")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=652962097]
-position = Vector2(277, 48)
+position = Vector2(307, 4)
 rotation = -1.5898055
 shape = SubResource("RectangleShape2D_ndpnn")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=183459460]
-position = Vector2(258, 304)
+position = Vector2(316, 357)
 rotation = -1.5753522
 shape = SubResource("RectangleShape2D_ndpnn")
 
-[node name="MinionTest" parent="." unique_id=1959686566 instance=ExtResource("2_u1ifg")]
+[node name="Minions" type="Node2D" parent="." unique_id=1344436488]
+
+[node name="MinionTest" parent="Minions" unique_id=1959686566 instance=ExtResource("2_u1ifg")]
 position = Vector2(224, 175)
 
-[node name="MinionTest5" parent="." unique_id=485308313 instance=ExtResource("2_u1ifg")]
+[node name="MinionTest5" parent="Minions" unique_id=485308313 instance=ExtResource("2_u1ifg")]
 position = Vector2(249, 188)
 
-[node name="MinionTest3" parent="." unique_id=1738651851 instance=ExtResource("2_u1ifg")]
+[node name="MinionTest3" parent="Minions" unique_id=1738651851 instance=ExtResource("2_u1ifg")]
 position = Vector2(227, 233)
 element = 2
 texture = "uid://w4nw1k0qbqnv"
 
-[node name="MinionTest4" parent="." unique_id=618482367 instance=ExtResource("2_u1ifg")]
+[node name="MinionTest8" parent="Minions" unique_id=610071003 instance=ExtResource("2_u1ifg")]
+position = Vector2(55, 233)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest9" parent="Minions" unique_id=1347589767 instance=ExtResource("2_u1ifg")]
+position = Vector2(135, 233)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest4" parent="Minions" unique_id=618482367 instance=ExtResource("2_u1ifg")]
 position = Vector2(304, 229)
 element = 3
 texture = "uid://jew1sjk6ux1u"
 
-[node name="MinionTest2" parent="." unique_id=1384903562 instance=ExtResource("2_u1ifg")]
+[node name="MinionTest10" parent="Minions" unique_id=1184489421 instance=ExtResource("2_u1ifg")]
+position = Vector2(378, 239)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest11" parent="Minions" unique_id=200580290 instance=ExtResource("2_u1ifg")]
+position = Vector2(463, 234)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest2" parent="Minions" unique_id=1384903562 instance=ExtResource("2_u1ifg")]
+position = Vector2(404, 187)
+element = 1
+texture = "uid://eujy5j8tlopn"
+
+[node name="MinionTest7" parent="Minions" unique_id=2108967314 instance=ExtResource("2_u1ifg")]
+position = Vector2(408, 122)
+element = 1
+texture = "uid://eujy5j8tlopn"
+
+[node name="MinionTest6" parent="Minions" unique_id=1121928411 instance=ExtResource("2_u1ifg")]
 position = Vector2(304, 187)
 element = 1
 texture = "uid://eujy5j8tlopn"
 
 [node name="Player" parent="." unique_id=389095423 instance=ExtResource("2_nnbuc")]
 position = Vector2(259, 122)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1660162347]
+
+[node name="PanelContainer" type="PanelContainer" parent="UI" unique_id=1876550939]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GunStorageVisual" type="GridContainer" parent="UI/PanelContainer" unique_id=437601204]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_2tmgr")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/PanelContainer/GunStorageVisual" unique_id=1050675770]
+layout_mode = 2
+texture = ExtResource("4_u5ya3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=662087641 node_paths=PackedStringArray("player")]
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 29.0
+offset_bottom = 12.0
+scale = Vector2(4, 4)
+value = 40.0
+texture_under = ExtResource("6_tegp7")
+texture_over = ExtResource("7_5coqi")
+texture_progress = ExtResource("8_tu775")
+script = ExtResource("3_nnbuc")
+player = NodePath("../../Player")
+
+[node name="Debug_Label" type="Label" parent="UI" unique_id=2109372396]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "adada"

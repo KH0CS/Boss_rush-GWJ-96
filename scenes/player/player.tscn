@@ -19,13 +19,9 @@ shape = SubResource("CapsuleShape2D_og67c")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=325235048]
 texture = ExtResource("2_g2els")
 
-[node name="Cannon" parent="." unique_id=298548447 instance=ExtResource("3_qhqgy")]
+[node name="Cannon" parent="." unique_id=298548447 node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
 unique_name_in_owner = true
-min_charge_to_release = null
-max_charge_time = null
-gun_rotation_speed = null
-gun_storage = null
-max_ammo_ammount = null
+player = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=151585069]
 script = ExtResource("4_lvxji")
