@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		# This is somewhat ineffecient but is the most reliabe method for checking on the minions,
 		# because relying on body_enter/exit causes some weird edge cases,
 		# causing minions to not get sucked in even if in the vacuum
-		#if minions_in_vacuum.is_empty(): # putting for loop on this statement will make it more effecient but ultimately
+		## if minions_in_vacuum.is_empty(): # putting loop on this statement will make it more effecient but the pulling of the minions is will one by one except for the first pull
 		for body in vaccum.get_overlapping_bodies():
 			if not body in minions_in_vacuum:
 				minions_in_vacuum.append(body)
@@ -150,9 +150,9 @@ func add_ammo(ammo_type: Type.elements) -> void:
 	EventBus.storage_changed.emit(gun_storage)
 
 
-func _on_vaccum_body_entered(body: Node2D) -> void:
-	if vacuum_active and body is Minion:
-		minions_in_vacuum.append(body)
+#func _on_vaccum_body_entered(body: Node2D) -> void:
+#	if vacuum_active and body is Minion:
+#		minions_in_vacuum.append(body)
 
 # commented out to make catching the elementals eassier
 # works because the vacuum only needs to touch the minions once and theyll get sucked in
