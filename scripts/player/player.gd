@@ -20,7 +20,7 @@ var health: float = 100:
 var move_speed: float = 125.0
 var acceleration: float = 250.0
 var friction: float = 500.0
-var external_velocity_decay: float = 250.0
+var external_velocity_decay: float = 7.0
 
 var move_velocity: Vector2 = Vector2.ZERO
 var external_velocity: Vector2 = Vector2.ZERO
@@ -38,16 +38,17 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_damage"):
 		take_damage(10)
+		apply_force((get_global_mouse_position() - global_position).normalized() * 250)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if gun.charge_time > 0:
 		charge_bar.visible = true
 	else:
 		charge_bar.visible = false
 	charge_bar.value = gun.charge_time 
 	
-	movement(_delta)
+	movement(delta)
 	move_and_slide()
 
 
@@ -63,7 +64,7 @@ func movement(delta: float):
 	
 	velocity = move_velocity + external_velocity
 
-# Used by other/external scripts to apply forces to the player
+# Used by other/external scripts to apply forces to the body
 func apply_force(force: Vector2):
 	external_velocity += force
 

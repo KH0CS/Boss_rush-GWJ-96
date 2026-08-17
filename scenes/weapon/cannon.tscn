@@ -5,11 +5,6 @@
 
 [node name="Cannon" type="Node2D" unique_id=298548447]
 script = ExtResource("1_0wvxs")
-min_charge_to_release = null
-max_charge_time = null
-gun_rotation_speed = null
-gun_storage = null
-max_ammo_ammount = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1459979105]
 position = Vector2(18, 0)
@@ -24,6 +19,7 @@ unique_name_in_owner = true
 position = Vector2(18, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vaccum" unique_id=1337472986]
-polygon = PackedVector2Array(0, 0, 27, 14, 31, 0, 28, -14)
+polygon = PackedVector2Array(0, 0, 91, 33, 93, 0, 91, -34)
 
 [connection signal="body_entered" from="Vaccum" to="." method="_on_vaccum_body_entered"]
+[connection signal="body_exited" from="Vaccum" to="." method="_on_vaccum_body_exited"]
