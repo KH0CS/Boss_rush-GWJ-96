@@ -5,6 +5,11 @@
 
 [node name="Cannon" type="Node2D" unique_id=298548447]
 script = ExtResource("1_0wvxs")
+min_charge_to_release = null
+max_charge_time = null
+gun_rotation_speed = null
+gun_storage = null
+max_ammo_ammount = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1459979105]
 position = Vector2(18, 0)

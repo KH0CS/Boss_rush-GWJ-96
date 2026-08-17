@@ -55,6 +55,10 @@ folder_colors={
 "res://testing/": "pink"
 }
 
+[gui]
+
+theme/custom_font="uid://cb7j8113sa1au"
+
 [input]
 
 left={
