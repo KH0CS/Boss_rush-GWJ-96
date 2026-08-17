@@ -56,13 +56,7 @@ func _process(delta: float) -> void:
 			distance_traveled = 0
 		else:
 			velocity = Vector2.ZERO
-
-	movement(delta)
 	
-	move_and_slide()
-
-
-func movement(delta: float):
 	if current_direction != Vector2.ZERO:
 		move_velocity = move_velocity.move_toward(current_direction * move_speed, acceleration * delta)
 	else:
@@ -71,6 +65,8 @@ func movement(delta: float):
 	external_velocity = external_velocity.lerp(Vector2.ZERO, 1.0 - exp(-external_velocity_decay * delta))
 	
 	velocity = move_velocity + external_velocity
+	
+	move_and_slide()
 
 # Used by other/external scripts to apply forces to the body
 func apply_force(force: Vector2):

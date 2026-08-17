@@ -18,9 +18,9 @@ var health: float = 100:
 
 # Player movement
 var move_speed: float = 125.0
-var acceleration: float = 250.0
-var friction: float = 500.0
-var external_velocity_decay: float = 7.0
+var acceleration: float = 300.0
+var friction: float = 250.0
+var external_velocity_decay: float = 4.0
 
 var move_velocity: Vector2 = Vector2.ZERO
 var external_velocity: Vector2 = Vector2.ZERO

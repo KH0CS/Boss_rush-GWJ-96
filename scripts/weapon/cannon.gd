@@ -11,6 +11,7 @@ const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 @export var min_charge_to_release : float = 0.2  # below this = "tap", no charge
 @export var max_charge_time : float = 1.5  # seconds to reach full charge
 @export var gun_rotation_speed: float = 15.0  # higher = snappier, lower = smoother
+@export var recoil_strength: float = 500.0 # recoil strength
 
 @export var gun_storage: Array[Type.elements] = []
 		#:
@@ -20,7 +21,7 @@ const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 @export var max_ammo_ammount: int = 3
 @export var max_storage_size: int = 10
 
-@export var vacuum_power: float = 15
+@export var vacuum_power: float = 25
 
 @onready var gun_muzzle: Marker2D = %Marker2D
 @onready var vaccum: Area2D = %Vaccum
@@ -120,7 +121,10 @@ func do_charged_attack(power: float) -> void:
 		
 		get_tree().root.add_child(bullet_spawn)
 		await get_tree().create_timer(shot.interval).timeout
-
+	
+	# Applying the recoil, the recoil strength is proportional to the the charge time
+	player.apply_force((-Vector2.from_angle(rotation) * recoil_strength) * power)
+	
 	## remove elementals from gun
 	gun_storage.pop_front()
 	gun_storage.pop_front()
