@@ -20,7 +20,7 @@ var health: float = 100:
 var move_speed: float = 125.0
 var acceleration: float = 250.0
 var friction: float = 500.0
-var external_force_decay: float = 250.0
+var external_velocity_decay: float = 250.0
 
 var move_velocity: Vector2 = Vector2.ZERO
 var external_velocity: Vector2 = Vector2.ZERO
@@ -59,13 +59,13 @@ func movement(delta: float):
 	else:
 		move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta)
 	
-	external_velocity = external_velocity.lerp(Vector2.ZERO, 1.0 - exp(-external_force_decay * delta))
+	external_velocity = external_velocity.lerp(Vector2.ZERO, 1.0 - exp(-external_velocity_decay * delta))
 	
 	velocity = move_velocity + external_velocity
 
 # Used by other/external scripts to apply forces to the player
 func apply_force(force: Vector2):
-	external_velocity += external_velocity
+	external_velocity += force
 
 func take_damage(amount: float) -> void:
 	health -= amount
