@@ -55,11 +55,6 @@ func _process(delta):
 	else:
 		scale.y = 1
 	
-	# Start charging when you click "click"
-	if Input.is_action_just_pressed("shoot") and vacuum_active == false and gun_storage.size() >= 3:
-		is_charging = true
-		charge_time = 0.0
-	
 	# Add charge using the delta
 	if is_charging:
 		charge_time += delta
@@ -78,17 +73,31 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	if vacuum_active == true:
+		# This is somewhat ineffecient but is the most reliabe method for checking on the minions,
+		# because relying on body_enter/exit causes some weird edge cases,
+		# causing minions to not get sucked in even if in the vacuum
+		#if minions_in_vacuum.is_empty(): # putting for loop on this statement will make it more effecient but ultimately
+		for body in vaccum.get_overlapping_bodies():
+			if not body in minions_in_vacuum:
+				minions_in_vacuum.append(body)
+		
+		
+		# minion handling logic
 		for minion in minions_in_vacuum:
 			if is_instance_valid(minion): # incase of any weird deletion prevents crashes
 				# apply SUCKING FORCE?!?!??!!!!
 				minion.apply_force((global_position - minion.global_position).normalized() * vacuum_power)
+				
+				# cancels the vacuum if the storage is full 
+				if gun_storage.size() == max_storage_size:
+					vacuum_active = false
+					minions_in_vacuum.clear()
 				
 				# Adds the minion into the ammo
 				if global_position.distance_to(minion.global_position) < 30:
 					minion.collect()
 					add_ammo(minion.element)
 					minions_in_vacuum.erase(minion)
-
 
 
 func release_attack(time_held: float) -> void:
@@ -145,7 +154,8 @@ func _on_vaccum_body_entered(body: Node2D) -> void:
 	if vacuum_active and body is Minion:
 		minions_in_vacuum.append(body)
 
-# Could be used if  
+# commented out to make catching the elementals eassier
+# works because the vacuum only needs to touch the minions once and theyll get sucked in
 #func _on_vaccum_body_exited(body: Node2D) -> void:
-#	if vacuum_active and body is Minion:
-#		minions_in_vacuum.append(body)
+#	if body is Minion:
+#		minions_in_vacuum.erase(body)
