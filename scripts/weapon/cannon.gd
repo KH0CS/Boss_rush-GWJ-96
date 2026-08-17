@@ -2,7 +2,6 @@ class_name Cannon
 extends Node2D
 
 #signal storage_changed(current_storage: Array[Type.elements])
-signal charge_status(current_storage: Array)
 
 const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 
@@ -27,21 +26,18 @@ const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 @onready var vaccum: Area2D = %Vaccum
 
 var is_charging := false
-var charge_time := 0.0:
-	set(current_charge):
-		charge_time = current_charge
-		update_charge_visual(current_charge, min_charge_to_release, max_charge_time)
+var charge_time := 0.0
 
 var minions_in_vacuum: Array[Minion] = []
 var vacuum_active: bool = false
 
 func _input(_event: InputEvent) -> void:
-	# Vaccum only active while right click is pressed
-	if Input.is_action_pressed("vacuum") and gun_storage.size() < max_storage_size:
+	if Input.is_action_just_pressed("shoot") and vacuum_active == false and gun_storage.size() >= 3:
+		is_charging = true
+		charge_time = 0.0
+	
+	if Input.is_action_pressed("vacuum") and is_charging == false and gun_storage.size() < max_storage_size:
 		vacuum_active = true
-	else:
-		vacuum_active = false
-
 
 func _process(delta):
 	# Calculate the angle to the mouse instead of instantly looking at it
@@ -59,33 +55,49 @@ func _process(delta):
 	else:
 		scale.y = 1
 	
-	# Start charging when you click "click"
-	if Input.is_action_just_pressed("shoot") and gun_storage.size() >= 3:
-		is_charging = true
-		charge_time = 0.0
-
-	
 	# Add charge using the delta
 	if is_charging:
 		charge_time += delta
 		charge_time = min(charge_time, max_charge_time)
-	
 	else:
 		charge_time = 0.0
 	
+	# Input release checks
 	if Input.is_action_just_released("shoot") and is_charging:
 		release_attack(charge_time)
 		is_charging = false
+	
+	if Input.is_action_just_released("vacuum") and vacuum_active:
+		vacuum_active = false
+		minions_in_vacuum.clear()
 
 func _physics_process(delta: float) -> void:
 	if vacuum_active == true:
+		# This is somewhat ineffecient but is the most reliabe method for checking on the minions,
+		# because relying on body_enter/exit causes some weird edge cases,
+		# causing minions to not get sucked in even if in the vacuum
+		## if minions_in_vacuum.is_empty(): # putting loop on this statement will make it more effecient but the pulling of the minions is will one by one except for the first pull
+		for body in vaccum.get_overlapping_bodies():
+			if not body in minions_in_vacuum:
+				minions_in_vacuum.append(body)
+		
+		
+		# minion handling logic
 		for minion in minions_in_vacuum:
-			if global_position.distance_to(minion.global_position) < 30:
-				minion.collect()
-				add_ammo(minion.element)
-			
-			var direction = (global_position - minion.global_position).normalized()
-			minion.apply_force(direction * vacuum_power)
+			if is_instance_valid(minion): # incase of any weird deletion prevents crashes
+				# apply SUCKING FORCE?!?!??!!!!
+				minion.apply_force((global_position - minion.global_position).normalized() * vacuum_power)
+				
+				# cancels the vacuum if the storage is full 
+				if gun_storage.size() == max_storage_size:
+					vacuum_active = false
+					minions_in_vacuum.clear()
+				
+				# Adds the minion into the ammo
+				if global_position.distance_to(minion.global_position) < 30:
+					minion.collect()
+					add_ammo(minion.element)
+					minions_in_vacuum.erase(minion)
 
 
 func release_attack(time_held: float) -> void:
@@ -130,15 +142,6 @@ func do_charged_attack(power: float) -> void:
 	gun_storage.pop_front()
 	gun_storage.pop_front()
 	EventBus.storage_changed.emit(gun_storage)
-	
-
-func update_charge_visual(current_charge: float, minimum_charge, max_charge: float) -> void:
-	# Currently just changes the bar
-	# TODO: Add indicator(Charging, Full Charged, Failed to Shoot)
-	var charge = min((current_charge/max_charge) * 100, 100)
-	
-	charge_status.emit(charge)
-
 
 
 func add_ammo(ammo_type: Type.elements) -> void:
@@ -147,10 +150,12 @@ func add_ammo(ammo_type: Type.elements) -> void:
 	EventBus.storage_changed.emit(gun_storage)
 
 
-func _on_vaccum_body_entered(body: Node2D) -> void:
-	if body is Minion:
-		minions_in_vacuum.append(body)
+#func _on_vaccum_body_entered(body: Node2D) -> void:
+#	if vacuum_active and body is Minion:
+#		minions_in_vacuum.append(body)
 
-func _on_vaccum_body_exited(body: Node2D) -> void:
-	if body is Minion:
-		minions_in_vacuum.erase(body)
+# commented out to make catching the elementals eassier
+# works because the vacuum only needs to touch the minions once and theyll get sucked in
+#func _on_vaccum_body_exited(body: Node2D) -> void:
+#	if body is Minion:
+#		minions_in_vacuum.erase(body)
