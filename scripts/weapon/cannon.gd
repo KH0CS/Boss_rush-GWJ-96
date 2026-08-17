@@ -11,6 +11,7 @@ const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 @export var min_charge_to_release : float = 0.2  # below this = "tap", no charge
 @export var max_charge_time : float = 1.5  # seconds to reach full charge
 @export var gun_rotation_speed: float = 15.0  # higher = snappier, lower = smoother
+@export var recoil_strength: float = 500.0 # recoil strength
 
 @export var gun_storage: Array[Type.elements] = []
 		#:
@@ -20,7 +21,10 @@ const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
 @export var max_ammo_ammount: int = 3
 @export var max_storage_size: int = 10
 
+@export var vacuum_power: float = 25
 
+@onready var gun_muzzle: Marker2D = %Marker2D
+@onready var vaccum: Area2D = %Vaccum
 
 var is_charging := false
 var charge_time := 0.0:
@@ -28,16 +32,15 @@ var charge_time := 0.0:
 		charge_time = current_charge
 		update_charge_visual(current_charge, min_charge_to_release, max_charge_time)
 
-@onready var gun_muzzle: Marker2D = %Marker2D
-@onready var vaccum: Area2D = %Vaccum
-
+var minions_in_vacuum: Array[Minion] = []
+var vacuum_active: bool = false
 
 func _input(_event: InputEvent) -> void:
 	# Vaccum only active while right click is pressed
 	if Input.is_action_pressed("vacuum") and gun_storage.size() < max_storage_size:
-		vaccum.monitoring = true
+		vacuum_active = true
 	else:
-		vaccum.monitoring = false
+		vacuum_active = false
 
 
 func _process(delta):
@@ -69,11 +72,20 @@ func _process(delta):
 	
 	else:
 		charge_time = 0.0
-		
-
+	
 	if Input.is_action_just_released("shoot") and is_charging:
 		release_attack(charge_time)
 		is_charging = false
+
+func _physics_process(delta: float) -> void:
+	if vacuum_active == true:
+		for minion in minions_in_vacuum:
+			if global_position.distance_to(minion.global_position) < 30:
+				minion.collect()
+				add_ammo(minion.element)
+			
+			var direction = (global_position - minion.global_position).normalized()
+			minion.apply_force(direction * vacuum_power)
 
 
 func release_attack(time_held: float) -> void:
@@ -109,7 +121,10 @@ func do_charged_attack(power: float) -> void:
 		
 		get_tree().root.add_child(bullet_spawn)
 		await get_tree().create_timer(shot.interval).timeout
-
+	
+	# Applying the recoil, the recoil strength is proportional to the the charge time
+	player.apply_force((-Vector2.from_angle(rotation) * recoil_strength) * power)
+	
 	## remove elementals from gun
 	gun_storage.pop_front()
 	gun_storage.pop_front()
@@ -132,8 +147,10 @@ func add_ammo(ammo_type: Type.elements) -> void:
 	EventBus.storage_changed.emit(gun_storage)
 
 
-
 func _on_vaccum_body_entered(body: Node2D) -> void:
-	## check if its minion
 	if body is Minion:
-		body.start_collect(self)
+		minions_in_vacuum.append(body)
+
+func _on_vaccum_body_exited(body: Node2D) -> void:
+	if body is Minion:
+		minions_in_vacuum.erase(body)
