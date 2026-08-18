@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cryl05t8hk51r"]
 
 [ext_resource type="Texture2D" uid="uid://dvdhc2dfbacam" path="res://assets/sprites/Jotem spritesheet.png" id="1_2la8t"]
+[ext_resource type="Script" uid="uid://b4qvgabamncp2" path="res://scripts/old_man_mob_test.gd" id="1_v4xvd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bjxeg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vbf6"]
 atlas = ExtResource("1_2la8t")
@@ -113,10 +116,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bjxeg"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_malew"]
+radius = 42.573467
 
 [node name="old_man_mob" type="CharacterBody2D" unique_id=2033551403]
 scale = Vector2(2, 2)
+script = ExtResource("1_v4xvd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=172322231]
+visible = false
+position = Vector2(0, 47)
+shape = SubResource("CapsuleShape2D_bjxeg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=638847491]
 sprite_frames = SubResource("SpriteFrames_malew")
@@ -125,6 +135,13 @@ autoplay = "idle"
 frame = 2
 frame_progress = 0.85119796
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=172322231]
-position = Vector2(0, 47)
-shape = SubResource("CapsuleShape2D_bjxeg")
+[node name="detection_area" type="Area2D" parent="." unique_id=278569890]
+position = Vector2(-0.5, 51)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="detection_area" unique_id=1495101279]
+shape = SubResource("CircleShape2D_malew")
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

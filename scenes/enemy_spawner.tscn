@@ -17,6 +17,7 @@ position = Vector2(0, 360)
 position = Vector2(639, 360)
 
 [node name="Timer" type="Timer" parent="." unique_id=836685055]
+wait_time = 0.449
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
