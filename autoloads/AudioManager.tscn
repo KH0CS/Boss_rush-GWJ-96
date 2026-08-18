@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://d0qptaxisvujj"]
+
+[ext_resource type="Script" uid="uid://s0npllfov6gr" path="res://scripts/audio/helper_scripts/audio_manager_2d.gd" id="1_4w5rg"]
+[ext_resource type="Script" uid="uid://d0osm5d7tp6qb" path="res://scripts/audio/helper_scripts/sound_effect_settings.gd" id="2_0f8da"]
+[ext_resource type="AudioStream" uid="uid://bawmqky0avlkd" path="res://assets/sfx/beeps.wav" id="3_xld20"]
+[ext_resource type="Script" uid="uid://1ktb3txwqwwr" path="res://scripts/audio/helper_scripts/music_settings.gd" id="4_2wd2j"]
+[ext_resource type="AudioStream" uid="uid://do3aqbnl4l3ac" path="res://assets/sfx/cannon.wav" id="4_466ms"]
+[ext_resource type="AudioStream" uid="uid://c5ubfg4f3gnbw" path="res://assets/music/bosses/mechanical worm.ogg" id="5_nql4i"]
+[ext_resource type="AudioStream" uid="uid://b70i7xge2wp6g" path="res://assets/sfx/cannon2.wav" id="5_r1p7h"]
+[ext_resource type="AudioStream" uid="uid://c8gaafns81xji" path="res://assets/music/death screen.ogg" id="6_nql4i"]
+[ext_resource type="AudioStream" uid="uid://btf7yxnsdpl3d" path="res://assets/sfx/suction.wav" id="6_r1p7h"]
+[ext_resource type="AudioStream" uid="uid://erccisqk84k7" path="res://assets/sfx/suction (mid-length).wav" id="7_h8jr5"]
+[ext_resource type="AudioStream" uid="uid://gfcfth83x5m5" path="res://assets/sfx/suction (longer).wav" id="8_k3oxk"]
+[ext_resource type="AudioStream" uid="uid://jquw64buxl5" path="res://assets/sfx/dodge.wav" id="9_evin1"]
+
+[sub_resource type="Resource" id="Resource_gamlx"]
+resource_name = "beeps"
+script = ExtResource("2_0f8da")
+limit = 1
+type = 1
+sound_effect = ExtResource("3_xld20")
+bus_name = &"SFX"
+metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
+
+[sub_resource type="Resource" id="Resource_r0f3c"]
+resource_name = "Cannon"
+script = ExtResource("2_0f8da")
+type = 2
+sound_effect = ExtResource("4_466ms")
+volume = -10.0
+bus_name = &"SFX"
+metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
+
+[sub_resource type="Resource" id="Resource_ldgb0"]
+resource_name = "Cannon2"
+script = ExtResource("2_0f8da")
+type = 3
+sound_effect = ExtResource("5_r1p7h")
+bus_name = &"SFX"
+metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
+
+[sub_resource type="Resource" id="Resource_dqh0w"]
+resource_name = "suction short"
+script = ExtResource("2_0f8da")
+type = 4
+sound_effect = ExtResource("6_r1p7h")
+bus_name = &"SFX"
+metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
+
+[sub_resource type="Resource" id="Resource_hi1jd"]
+resource_name = "Suction medium"
+script = ExtResource("2_0f8da")
+type = 5
+sound_effect = ExtResource("7_h8jr5")
+bus_name = &"SFX"
+metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
+
+[sub_resource type="Resource" id="Resource_ubbss"]
+resource_name = "Suction Long"
+script = ExtResource("2_0f8da")
+type = 6
+sound_effect = ExtResource("8_k3oxk")
+bus_name = &"SFX"
+metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
+
+[sub_resource type="Resource" id="Resource_i2ppm"]
+resource_name = "Dodge"
+script = ExtResource("2_0f8da")
+type = 7
+sound_effect = ExtResource("9_evin1")
+metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
+
+[sub_resource type="Resource" id="Resource_nql4i"]
+resource_name = "Worm boss P1"
+script = ExtResource("4_2wd2j")
+track_type = 1
+stream = ExtResource("5_nql4i")
+bus_name = &"Music"
+metadata/_custom_type_script = "uid://1ktb3txwqwwr"
+
+[sub_resource type="Resource" id="Resource_5l6eo"]
+resource_name = "Death Music"
+script = ExtResource("4_2wd2j")
+track_type = 2
+stream = ExtResource("6_nql4i")
+bus_name = &"Music"
+metadata/_custom_type_script = "uid://1ktb3txwqwwr"
+
+[node name="AudioManager" type="Node2D" unique_id=345915409]
+script = ExtResource("1_4w5rg")
+warn_on_missing_sound_assignments = true
+sound_effects = Array[ExtResource("2_0f8da")]([SubResource("Resource_gamlx"), SubResource("Resource_r0f3c"), SubResource("Resource_ldgb0"), SubResource("Resource_dqh0w"), SubResource("Resource_hi1jd"), SubResource("Resource_ubbss"), SubResource("Resource_i2ppm")])
+music_tracks = Array[ExtResource("4_2wd2j")]([SubResource("Resource_nql4i"), SubResource("Resource_5l6eo")])

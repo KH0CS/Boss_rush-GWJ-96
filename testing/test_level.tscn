@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="2_nnbuc"]
 [ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_u1ifg"]
 [ext_resource type="Script" uid="uid://b3u2tcc3kjf7h" path="res://testing/progress_bar_test.gd" id="3_nnbuc"]
+[ext_resource type="Texture2D" uid="uid://d4ch677tgc2er" path="res://assets/sprites/minions/boss_test.png" id="3_tu775"]
 [ext_resource type="Script" uid="uid://n158kqdd31j5" path="res://testing/gun_storage_visual.gd" id="4_2tmgr"]
 [ext_resource type="Texture2D" uid="uid://bb3nee0fj330i" path="res://assets/sprites/minions/fire_minion.png" id="4_u5ya3"]
 [ext_resource type="Texture2D" uid="uid://cpg8omxk0vo2e" path="res://assets/sprites/ui/health bar/health_bar_under.png" id="6_tegp7"]
@@ -89,7 +90,12 @@ position = Vector2(304, 187)
 element = 1
 texture = "uid://eujy5j8tlopn"
 
+[node name="Sprite2D" type="Sprite2D" parent="Minions" unique_id=446329336]
+position = Vector2(162, 92)
+texture = ExtResource("3_tu775")
+
 [node name="Player" parent="." unique_id=389095423 instance=ExtResource("2_nnbuc")]
+unique_name_in_owner = true
 position = Vector2(259, 122)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1660162347]
@@ -106,22 +112,47 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="GunStorageVisual" type="GridContainer" parent="UI/PanelContainer" unique_id=437601204]
-unique_name_in_owner = true
+[node name="GunStorageVisual" type="VBoxContainer" parent="UI/PanelContainer" unique_id=1081541854 node_paths=PackedStringArray("barrel", "storage")]
 layout_mode = 2
 script = ExtResource("4_2tmgr")
+barrel = NodePath("Barrel")
+storage = NodePath("Storage")
 
-[node name="TextureRect2" type="TextureRect" parent="UI/PanelContainer/GunStorageVisual" unique_id=1050675770]
+[node name="Label2" type="Label" parent="UI/PanelContainer/GunStorageVisual" unique_id=952530994]
+layout_mode = 2
+text = "Barrel:"
+
+[node name="Barrel" type="GridContainer" parent="UI/PanelContainer/GunStorageVisual" unique_id=437601204]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="UI/PanelContainer/GunStorageVisual/Barrel" unique_id=1050675770]
+layout_mode = 2
+texture = ExtResource("4_u5ya3")
+
+[node name="Label" type="Label" parent="UI/PanelContainer/GunStorageVisual" unique_id=912937322]
+layout_mode = 2
+text = "Storage:"
+
+[node name="Storage" type="GridContainer" parent="UI/PanelContainer/GunStorageVisual" unique_id=849158574]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="UI/PanelContainer/GunStorageVisual/Storage" unique_id=1488053241]
 layout_mode = 2
 texture = ExtResource("4_u5ya3")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=662087641 node_paths=PackedStringArray("player")]
 offset_left = 5.0
-offset_top = 4.0
-offset_right = 29.0
-offset_bottom = 12.0
+offset_top = 5.0
+offset_right = 49.75
+offset_bottom = 11.0
 scale = Vector2(4, 4)
-value = 40.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
 texture_under = ExtResource("6_tegp7")
 texture_over = ExtResource("7_5coqi")
 texture_progress = ExtResource("8_tu775")

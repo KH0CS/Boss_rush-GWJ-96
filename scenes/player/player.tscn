@@ -12,6 +12,8 @@ height = 16.0
 [node name="Player" type="CharacterBody2D" unique_id=389095423 node_paths=PackedStringArray("gun")]
 script = ExtResource("1_g2els")
 gun = NodePath("Cannon")
+friction = 300.0
+external_velocity_decay = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1583880687]
 shape = SubResource("CapsuleShape2D_og67c")

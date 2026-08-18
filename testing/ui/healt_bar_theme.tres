@@ -1,0 +1,24 @@
+[gd_resource type="Theme" format=3 uid="uid://t6wbb545iown"]
+
+[ext_resource type="Texture2D" uid="uid://bwj8kneuej84y" path="res://assets/sprites/ui/health bar/health_bar_outline.png" id="1_ealfc"]
+[ext_resource type="Texture2D" uid="uid://36rliefn0d5o" path="res://assets/sprites/ui/health bar/health_bar_progress.png" id="2_v250l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ufh8u"]
+texture = ExtResource("1_ealfc")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(0, 0, 24, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cssmh"]
+texture = ExtResource("2_v250l")
+texture_margin_left = 3.0
+texture_margin_top = 2.0
+texture_margin_right = 3.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 0, 24, 8)
+
+[resource]
+ProgressBar/styles/background = SubResource("StyleBoxTexture_ufh8u")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_cssmh")
