@@ -29,7 +29,14 @@ var is_charging := false
 var charge_time := 0.0
 
 var minions_in_vacuum: Array[Minion] = []
-var vacuum_active: bool = false
+var vacuum_active: bool = false:
+	set(value):
+		vacuum_active = value
+		if vacuum_active == true:
+			AudioManager.play_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
+		else:
+			AudioManager.stop_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
+			
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") and vacuum_active == false and gun_storage.size() >= 3:
@@ -38,6 +45,11 @@ func _input(_event: InputEvent) -> void:
 	
 	if Input.is_action_pressed("vacuum") and is_charging == false and gun_storage.size() < max_storage_size:
 		vacuum_active = true
+	else:
+		vacuum_active = false
+	if Input.is_action_just_pressed("vacuum") and gun_storage.size() >= max_storage_size:
+		AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
+
 
 func _process(delta):
 	# Calculate the angle to the mouse instead of instantly looking at it
@@ -131,6 +143,7 @@ func do_charged_attack(power: float) -> void:
 		# Set projectile charge
 		bullet_spawn.power = power * 0.1
 		
+		AudioManager.play_audio(bullet_spawn.data.shot_sfx)
 		get_tree().root.add_child(bullet_spawn)
 		await get_tree().create_timer(shot.interval).timeout
 	
@@ -146,7 +159,7 @@ func do_charged_attack(power: float) -> void:
 
 func add_ammo(ammo_type: Type.elements) -> void:
 	gun_storage.append(ammo_type)
-	print(gun_storage)
+	#print(gun_storage)
 	EventBus.storage_changed.emit(gun_storage)
 
 

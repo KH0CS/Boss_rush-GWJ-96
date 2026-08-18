@@ -19,7 +19,7 @@ unique_name_in_owner = true
 position = Vector2(18, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vaccum" unique_id=1337472986]
-polygon = PackedVector2Array(0, 0, 91, 33, 93, 0, 91, -34)
+polygon = PackedVector2Array(-8, -3, -8, 3, 91, 33, 93, 0, 91, -34)
 
 [connection signal="body_entered" from="Vaccum" to="." method="_on_vaccum_body_entered"]
 [connection signal="body_exited" from="Vaccum" to="." method="_on_vaccum_body_exited"]
