@@ -101,6 +101,8 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 		call_deferred("emit_signal", "scene_loaded")
 		if not _background_loading:
 			change_scene_to_resource()
+			## to clear any leftover music tracks
+			AudioManager.stop_all_music(1)
 		return
 	ResourceLoader.load_threaded_request(_scene_path)
 	set_process(true)

@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://c8okbg2doh58w" path="res://resources/projectiles/projectile_data.gd" id="1_nxk6d"]
 [ext_resource type="Script" uid="uid://bdta8y6hpdju8" path="res://scripts/weapon/shots/shot_base.gd" id="2_o36kw"]
 
-[sub_resource type="Resource" id="Resource_2c0ty"]
+[sub_resource type="Resource" id="Resource_dqh0w"]
 script = ExtResource("1_nxk6d")
-texture = "uid://jew1sjk6ux1u"
-damage = 14.13
+texture = "<null>"
 metadata/_custom_type_script = "uid://c8okbg2doh58w"
 
 [resource]
 script = ExtResource("2_o36kw")
-projectiles = Array[ExtResource("1_nxk6d")]([SubResource("Resource_2c0ty")])
+projectiles = Array[ExtResource("1_nxk6d")]([SubResource("Resource_dqh0w")])
 metadata/_custom_type_script = "uid://bdta8y6hpdju8"

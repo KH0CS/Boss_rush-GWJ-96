@@ -4,16 +4,19 @@ extends Node2D
 signal level_lost
 
 @onready var debug_label: Label = %Debug_Label
+#@export var boss_music 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.player_died.connect(_on_player_died)
 	EventBus.shot_fired.connect(_on_shot_fired)
 	debug_label.text = ""
-
-
+	AudioManager.stop_all_music(2)
+	AudioManager.play_music(MusicTrack.TRACK_TYPE.WORM_BOSS_P1)
 
 func _on_player_died() -> void:
+	AudioManager.stop_all_music(2)
+	AudioManager.play_music(MusicTrack.TRACK_TYPE.DEATH_SCREEN, 0.5)
 	level_lost.emit()
 
 

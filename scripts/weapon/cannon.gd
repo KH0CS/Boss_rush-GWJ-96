@@ -33,7 +33,14 @@ var charge_time := 0.0:
 		update_charge_visual(current_charge, min_charge_to_release, max_charge_time)
 
 var minions_in_vacuum: Array[Minion] = []
-var vacuum_active: bool = false
+var vacuum_active: bool = false:
+	set(value):
+		vacuum_active = value
+		if vacuum_active == true:
+			AudioManager.play_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
+		else:
+			AudioManager.stop_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
+			
 
 func _input(_event: InputEvent) -> void:
 	# Vaccum only active while right click is pressed
@@ -41,6 +48,8 @@ func _input(_event: InputEvent) -> void:
 		vacuum_active = true
 	else:
 		vacuum_active = false
+	if Input.is_action_just_pressed("vacuum") and gun_storage.size() >= max_storage_size:
+		AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
 
 
 func _process(delta):
@@ -119,6 +128,7 @@ func do_charged_attack(power: float) -> void:
 		# Set projectile charge
 		bullet_spawn.power = power * 0.1
 		
+		AudioManager.play_audio(bullet_spawn.data.shot_sfx)
 		get_tree().root.add_child(bullet_spawn)
 		await get_tree().create_timer(shot.interval).timeout
 	
@@ -143,7 +153,7 @@ func update_charge_visual(current_charge: float, minimum_charge, max_charge: flo
 
 func add_ammo(ammo_type: Type.elements) -> void:
 	gun_storage.append(ammo_type)
-	print(gun_storage)
+	#print(gun_storage)
 	EventBus.storage_changed.emit(gun_storage)
 
 

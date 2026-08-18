@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Boss_Rush"
-run/main_scene="uid://c7c0r17pqk436"
+run/main_scene="res://scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 run/layer_8="pickup range"
@@ -29,6 +29,7 @@ ProjectMusicController="*uid://r5t485lr3p7t"
 ProjectUISoundController="*uid://cc37235kj4384"
 ElementalCombos="*uid://cq4h8gf68dlrc"
 EventBus="*uid://b5aa1qe625ghh"
+AudioManager="*uid://d0qptaxisvujj"
 
 [display]
 

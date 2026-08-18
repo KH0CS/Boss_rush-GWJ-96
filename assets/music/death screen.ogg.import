@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c8gaafns81xji"
+path="res://.godot/imported/death screen.ogg-8d7568b4cafe658d258974c96ee49b48.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/death screen.ogg"
+dest_files=["res://.godot/imported/death screen.ogg-8d7568b4cafe658d258974c96ee49b48.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
