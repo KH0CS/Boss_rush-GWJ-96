@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://h6qxm878hwn7"]
+
+[ext_resource type="Script" uid="uid://cyab6nhb0ny2e" path="res://scripts/enemy_spawner/spawn_manager.gd" id="1_ltx4y"]
+
+[node name="spawner" type="Marker2D" unique_id=1561782287]
+script = ExtResource("1_ltx4y")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2079886267]
+
+[node name="respawn_timer" type="Timer" parent="." unique_id=1817395007]
