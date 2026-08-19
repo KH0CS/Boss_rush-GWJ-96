@@ -12,12 +12,15 @@ func _ready() -> void:
 	EventBus.shot_fired.connect(_on_shot_fired)
 	debug_label.text = ""
 	AudioManager.stop_all_music(2)
-	AudioManager.play_music(MusicTrack.TRACK_TYPE.WORM_BOSS_P1)
+	AudioManager.play_music(MusicTrack.TRACK_TYPE.WORM_BOSS_P1, 2)
+
 
 func _on_player_died() -> void:
 	AudioManager.stop_all_music(2)
-	AudioManager.play_music(MusicTrack.TRACK_TYPE.DEATH_SCREEN, 0.5)
+	AudioManager.play_music(MusicTrack.TRACK_TYPE.DEATH_SCREEN,0.5)
+	#AudioManager.get_managed_player("death_music_player").play()
 	level_lost.emit()
+
 
 
 func _on_shot_fired(shot_name: String) -> void:

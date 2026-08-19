@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cru3q40d72qbl"]
+
+[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="1_nlhuj"]
+
+[node name="LightningMinion" unique_id=1959686566 instance=ExtResource("1_nlhuj")]
+element = 3
+texture = "uid://jew1sjk6ux1u"

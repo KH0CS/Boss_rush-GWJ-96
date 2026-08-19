@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dqw0lryrtcdtn"]
+
+[ext_resource type="Script" uid="uid://c8c8raryu0g2s" path="res://scenes/shots/shot_base.gd" id="1_njbnd"]
+[ext_resource type="PackedScene" uid="uid://cmpnyp1enggxd" path="res://scenes/weapon/projectile.tscn" id="2_cfn85"]
+
+[node name="ShotBase" type="Node2D" unique_id=1113263127 node_paths=PackedStringArray("interval_timer")]
+script = ExtResource("1_njbnd")
+projectiles = Array[PackedScene]([ExtResource("2_cfn85")])
+target_type = 1
+interval_timer = NodePath("IntervalTimer")
+
+[node name="IntervalTimer" type="Timer" parent="." unique_id=938874357]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="IntervalTimer" to="." method="_on_interval_timer_timeout"]
