@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://buyte06wngq77"]
+
+[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="1_ppcso"]
+
+[node name="EarthMinion" unique_id=1959686566 instance=ExtResource("1_ppcso")]
+element = 2
+texture = "uid://w4nw1k0qbqnv"

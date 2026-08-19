@@ -3,8 +3,6 @@ extends Node2D
 
 #signal storage_changed(current_storage: Array[Type.elements])
 
-const PROJECTILE = preload("res://scenes/weapon/projectile.tscn")
-
 @export var player: Player
 # Charge time settings
 @export var min_charge_to_release : float = 0.2  # below this = "tap", no charge
@@ -29,14 +27,7 @@ var is_charging := false
 var charge_time := 0.0
 
 var minions_in_vacuum: Array[Minion] = []
-var vacuum_active: bool = false:
-	set(value):
-		vacuum_active = value
-		if vacuum_active == true:
-			AudioManager.play_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
-		else:
-			AudioManager.stop_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
-			
+var vacuum_active: bool = false
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") and vacuum_active == false and gun_storage.size() >= 3:
@@ -45,11 +36,15 @@ func _input(_event: InputEvent) -> void:
 	
 	if Input.is_action_pressed("vacuum") and is_charging == false and gun_storage.size() < max_storage_size:
 		vacuum_active = true
+		if SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG not in AudioManager.active_looping_sounds.keys():
+			AudioManager.play_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
 	else:
 		vacuum_active = false
+		if SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG in AudioManager.active_looping_sounds.keys():
+			AudioManager.stop_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
+		
 	if Input.is_action_just_pressed("vacuum") and gun_storage.size() >= max_storage_size:
 		AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
-
 
 func _process(delta):
 	# Calculate the angle to the mouse instead of instantly looking at it
@@ -83,7 +78,7 @@ func _process(delta):
 		vacuum_active = false
 		minions_in_vacuum.clear()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if vacuum_active == true:
 		# This is somewhat ineffecient but is the most reliabe method for checking on the minions,
 		# because relying on body_enter/exit causes some weird edge cases,
@@ -128,32 +123,17 @@ func do_charged_attack(power: float) -> void:
 	
 	## figure out the projectiles
 	var shot = ElementalCombos.get_elemental_combo(barrel)
-	var rot_i = 0
-	for projectile_data in shot.projectiles:
-		var bullet_spawn = PROJECTILE.instantiate() as Projectile
-		# give bullet new data 
-		bullet_spawn.data = projectile_data
-		bullet_spawn.target_type = shot.target_type
-		bullet_spawn.global_position = gun_muzzle.global_position
-		
-		# rotate and add spread
-		bullet_spawn.rotation = rotation + (shot.spread * rot_i)
-		rot_i += 1
-		
-		# Set projectile charge
-		bullet_spawn.power = power * 0.1
-		
-		AudioManager.play_audio(bullet_spawn.data.shot_sfx)
-		get_tree().root.add_child(bullet_spawn)
-		await get_tree().create_timer(shot.interval).timeout
+	var shot_node = shot.instantiate() as ShotBase
+	shot_node.power = power * 0.1
+	shot_node.shooter = self
+	add_child(shot_node)
 	
-	# Applying the recoil, the recoil strength is proportional to the the charge time
+	## Applying the recoil, the recoil strength is proportional to the the charge time
 	player.apply_force((-Vector2.from_angle(rotation) * recoil_strength) * power)
 	
 	## remove elementals from gun
-	gun_storage.pop_front()
-	gun_storage.pop_front()
-	gun_storage.pop_front()
+	for i in range(max_ammo_ammount):
+		gun_storage.pop_front()
 	EventBus.storage_changed.emit(gun_storage)
 
 

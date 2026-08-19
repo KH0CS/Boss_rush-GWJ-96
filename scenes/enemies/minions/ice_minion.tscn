@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b1g6r8bguw07p"]
+
+[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="1_44n71"]
+
+[node name="IceMinion" unique_id=1959686566 instance=ExtResource("1_44n71")]
+element = 1
+texture = "uid://eujy5j8tlopn"

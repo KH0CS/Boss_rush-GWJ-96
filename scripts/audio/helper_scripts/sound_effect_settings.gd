@@ -26,7 +26,9 @@ enum SOUND_EFFECT_TYPE {
 	SUCTION_SHORT,
 	SUCTION_MEDIUM,
 	SUCTION_LONG,
-	DODGE
+	DODGE,
+	FOOTSTEP,
+	PLAYER_TAKING_DAMAGE
 }
 
 ##-------------------------- Inspector Settings - Configure these for each SoundEffect resource in the inspector ----------##

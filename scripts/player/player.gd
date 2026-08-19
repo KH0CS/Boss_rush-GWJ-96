@@ -53,8 +53,12 @@ func movement(delta: float):
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	
 	if input_dir != Vector2.ZERO:
+		if SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP not in AudioManager.active_looping_sounds.keys():
+			AudioManager.play_loop(SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP)
 		move_velocity = move_velocity.move_toward(input_dir * move_speed, acceleration * delta)
 	else:
+		if SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP in AudioManager.active_looping_sounds.keys():
+			AudioManager.stop_loop(SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP)
 		move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta)
 	
 	external_velocity = external_velocity.lerp(Vector2.ZERO, 1.0 - exp(-external_velocity_decay * delta))
@@ -67,3 +71,4 @@ func apply_force(force: Vector2):
 
 func take_damage(amount: float) -> void:
 	health -= amount
+	AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.PLAYER_TAKING_DAMAGE)

@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cpg8omxk0vo2e" path="res://assets/sprites/ui/health bar/health_bar_under.png" id="6_tegp7"]
 [ext_resource type="Texture2D" uid="uid://bwj8kneuej84y" path="res://assets/sprites/ui/health bar/health_bar_outline.png" id="7_5coqi"]
 [ext_resource type="Texture2D" uid="uid://36rliefn0d5o" path="res://assets/sprites/ui/health bar/health_bar_progress.png" id="8_tu775"]
+[ext_resource type="AudioStream" uid="uid://c8gaafns81xji" path="res://assets/music/death screen.ogg" id="11_cssmh"]
+[ext_resource type="Script" uid="uid://cigjnd8fefi7p" path="res://scripts/audio/helper_scripts/audio_manager_helper.gd" id="12_nnstu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ndpnn"]
 size = Vector2(27.264038, 628.0924)
@@ -142,7 +144,7 @@ layout_mode = 2
 layout_mode = 2
 texture = ExtResource("4_u5ya3")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=662087641 node_paths=PackedStringArray("player")]
+[node name="HealthBar" type="TextureProgressBar" parent="UI" unique_id=662087641 node_paths=PackedStringArray("player")]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 49.75
@@ -172,3 +174,13 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "adada"
+
+[node name="DeathMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=109069560]
+stream = ExtResource("11_cssmh")
+bus = &"Music"
+parameters/looping = true
+script = ExtResource("12_nnstu")
+player_name = "death_music_player"
+manager_type = 1
+manager_name_2d = &"AudioManager"
+manager_name_3d = &"AudioManager"
