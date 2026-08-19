@@ -39,16 +39,26 @@ var vacuum_active: bool = false:
 			
 
 func _input(_event: InputEvent) -> void:
+	# input
 	if Input.is_action_just_pressed("shoot") and vacuum_active == false and gun_storage.size() >= 3:
 		is_charging = true
 		charge_time = 0.0
 	
 	if Input.is_action_pressed("vacuum") and is_charging == false and gun_storage.size() < max_storage_size:
 		vacuum_active = true
-	else:
-		vacuum_active = false
+	
+	# inventory is full sound effect
 	if Input.is_action_just_pressed("vacuum") and gun_storage.size() >= max_storage_size:
 		AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
+	
+	# Input release checks
+	if Input.is_action_just_released("shoot") and is_charging:
+		release_attack(charge_time)
+		is_charging = false
+	
+	if Input.is_action_just_released("vacuum") and vacuum_active:
+		vacuum_active = false
+		minions_in_vacuum.clear()
 
 
 func _process(delta):
@@ -73,15 +83,6 @@ func _process(delta):
 		charge_time = min(charge_time, max_charge_time)
 	else:
 		charge_time = 0.0
-	
-	# Input release checks
-	if Input.is_action_just_released("shoot") and is_charging:
-		release_attack(charge_time)
-		is_charging = false
-	
-	if Input.is_action_just_released("vacuum") and vacuum_active:
-		vacuum_active = false
-		minions_in_vacuum.clear()
 
 func _physics_process(delta: float) -> void:
 	if vacuum_active == true:
@@ -104,6 +105,7 @@ func _physics_process(delta: float) -> void:
 				if gun_storage.size() == max_storage_size:
 					vacuum_active = false
 					minions_in_vacuum.clear()
+					AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
 				
 				# Adds the minion into the ammo
 				if global_position.distance_to(minion.global_position) < 30:
