@@ -1,13 +1,119 @@
 [gd_scene format=3 uid="uid://3w7d8nqis2ui"]
 
 [ext_resource type="Script" uid="uid://bll3fe38ivkdj" path="res://scripts/player/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://dq8f2nul1fkud" path="res://assets/sprites/player/player.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://dxcyp1fpabdkq" path="res://assets/sprites/player/player_body_f_b_sprites.png" id="2_p47bc"]
+[ext_resource type="Texture2D" uid="uid://cwssekk0ap1bu" path="res://assets/sprites/player/player_head_sprites.png" id="3_75vfm"]
 [ext_resource type="PackedScene" uid="uid://nxdpcwcr5msq" path="res://scenes/weapon/cannon.tscn" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://oogtc2b0ldm4" path="res://scripts/player/camera_2d.gd" id="4_lvxji"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_og67c"]
 radius = 8.0
 height = 16.0
+
+[sub_resource type="Animation" id="Animation_0owmy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/head:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qek5x"]
+resource_name = "idle"
+length = 2.000025
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -4), Vector2(0, -3), Vector2(0, -4), Vector2(0, -3), Vector2(0, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/head:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p47bc"]
+resource_name = "walk_forward"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 1, 2, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gtgg"]
+_data = {
+&"RESET": SubResource("Animation_0owmy"),
+&"idle": SubResource("Animation_qek5x"),
+&"walk_forward": SubResource("Animation_p47bc")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=389095423 node_paths=PackedStringArray("gun")]
 script = ExtResource("1_g2els")
@@ -18,8 +124,15 @@ external_velocity_decay = 10.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1583880687]
 shape = SubResource("CapsuleShape2D_og67c")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=325235048]
-texture = ExtResource("2_g2els")
+[node name="Body" type="Sprite2D" parent="." unique_id=325235048]
+texture = ExtResource("2_p47bc")
+hframes = 3
+
+[node name="head" type="Sprite2D" parent="Body" unique_id=1014769136]
+position = Vector2(0, -4)
+texture = ExtResource("3_75vfm")
+hframes = 4
+frame = 1
 
 [node name="Cannon" parent="." unique_id=298548447 node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
 unique_name_in_owner = true
@@ -38,3 +151,8 @@ offset_right = 11.0
 offset_bottom = 15.0
 step = 0.001
 show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1625004136]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_5gtgg")
+autoplay = &"idle"

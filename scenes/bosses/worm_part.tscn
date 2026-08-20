@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bua8f8a030gjb"]
+
+[ext_resource type="Script" uid="uid://cvr3kwy0qqr3t" path="res://scripts/boss/worm_part.gd" id="1_2ssj7"]
+[ext_resource type="Texture2D" uid="uid://cp4sqlswfgjlb" path="res://assets/sprites/boss/worm_body.png" id="2_w6fwe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ndpnn"]
+radius = 14.035668
+
+[node name="WormPart" type="CharacterBody2D" unique_id=769181568 node_paths=PackedStringArray("sprite_2d")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_2ssj7")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=940651213]
+shape = SubResource("CircleShape2D_ndpnn")
+debug_color = Color(0.4399024, 0.59721226, 0.13851333, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=664164389]
+unique_name_in_owner = true
+texture = ExtResource("2_w6fwe")

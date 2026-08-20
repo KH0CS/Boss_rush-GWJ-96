@@ -52,10 +52,16 @@ folder_colors={
 "res://autoloads/": "blue",
 "res://resources/": "orange",
 "res://scenes/": "purple",
+"res://scenes/bosses/": "red",
 "res://scenes/enemies/": "red",
+"res://scenes/states/": "purple",
 "res://scripts/": "teal",
 "res://testing/": "pink"
 }
+
+[global_group]
+
+Player=""
 
 [gui]
 

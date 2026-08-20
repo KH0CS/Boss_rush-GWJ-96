@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://b3nbegpoiyrx4"]
+
+[ext_resource type="Script" uid="uid://bre5v3mjnjhfv" path="res://scripts/boss/worm_boss.gd" id="1_e5spp"]
+[ext_resource type="Texture2D" uid="uid://bv33yhy3yhvu8" path="res://assets/sprites/boss/worm_head.png" id="2_1l1or"]
+[ext_resource type="Script" uid="uid://b3u8k1jh287mx" path="res://scenes/bosses/state_machine.gd" id="2_tcyao"]
+[ext_resource type="Script" uid="uid://belquh4lun4d1" path="res://scenes/states/boss_attack.gd" id="3_1l1or"]
+[ext_resource type="Script" uid="uid://bh75rovkwkxd3" path="res://scenes/states/boss_idle.gd" id="4_vr8yq"]
+[ext_resource type="Script" uid="uid://6q4pach4r8bn" path="res://scenes/states/boss_follow.gd" id="5_37ib0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ndpnn"]
+
+[node name="WormBoss" type="CharacterBody2D" unique_id=171649054 node_paths=PackedStringArray("head_visual", "shoot_point")]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_e5spp")
+head_visual = NodePath("Sprite2D")
+shoot_point = NodePath("ShootPoint")
+metadata/_custom_type_script = "uid://c6260uad3rm10"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1927558374]
+shape = SubResource("CircleShape2D_ndpnn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1121518547]
+texture = ExtResource("2_1l1or")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1456161033]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1735615552 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_tcyao")
+initial_state = NodePath("BossIdle")
+metadata/_custom_type_script = "uid://b3u8k1jh287mx"
+
+[node name="BossAttack" type="Node" parent="StateMachine" unique_id=834760465 node_paths=PackedStringArray("timer", "boss", "animation_player", "sprite", "transition_States")]
+script = ExtResource("3_1l1or")
+timer = NodePath("../../StateTimer")
+boss = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+transition_States = [NodePath("../BossIdle"), NodePath("../BossFollow")]
+metadata/_custom_type_script = "uid://belquh4lun4d1"
+
+[node name="BossIdle" type="Node" parent="StateMachine" unique_id=1747102782 node_paths=PackedStringArray("timer", "boss", "animation_player", "sprite", "transition_States")]
+script = ExtResource("4_vr8yq")
+timer = NodePath("../../StateTimer")
+boss = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+transition_States = [NodePath("../BossAttack"), NodePath("../BossFollow")]
+metadata/_custom_type_script = "uid://bh75rovkwkxd3"
+
+[node name="BossFollow" type="Node" parent="StateMachine" unique_id=270876690 node_paths=PackedStringArray("timer", "boss", "animation_player", "sprite", "transition_States")]
+script = ExtResource("5_37ib0")
+move_speed = 80.0
+timer = NodePath("../../StateTimer")
+boss = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+transition_States = [NodePath("../BossIdle"), NodePath("../BossAttack")]
+metadata/_custom_type_script = "uid://6q4pach4r8bn"
+
+[node name="StateTimer" type="Timer" parent="." unique_id=1372899708]
+
+[node name="ShootPoint" type="Marker2D" parent="." unique_id=709575294]
+position = Vector2(19, 0)

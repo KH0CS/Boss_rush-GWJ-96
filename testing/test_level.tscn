@@ -4,22 +4,26 @@
 [ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="2_nnbuc"]
 [ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_u1ifg"]
 [ext_resource type="Script" uid="uid://b3u2tcc3kjf7h" path="res://testing/progress_bar_test.gd" id="3_nnbuc"]
-[ext_resource type="Texture2D" uid="uid://d4ch677tgc2er" path="res://assets/sprites/minions/boss_test.png" id="3_tu775"]
 [ext_resource type="Script" uid="uid://n158kqdd31j5" path="res://testing/gun_storage_visual.gd" id="4_2tmgr"]
+[ext_resource type="PackedScene" uid="uid://b3nbegpoiyrx4" path="res://scenes/bosses/Worm_boss.tscn" id="4_nnstu"]
+[ext_resource type="PackedScene" uid="uid://bua8f8a030gjb" path="res://scenes/bosses/worm_part.tscn" id="4_pm7tv"]
 [ext_resource type="Texture2D" uid="uid://bb3nee0fj330i" path="res://assets/sprites/minions/fire_minion.png" id="4_u5ya3"]
 [ext_resource type="Texture2D" uid="uid://cpg8omxk0vo2e" path="res://assets/sprites/ui/health bar/health_bar_under.png" id="6_tegp7"]
 [ext_resource type="Texture2D" uid="uid://bwj8kneuej84y" path="res://assets/sprites/ui/health bar/health_bar_outline.png" id="7_5coqi"]
 [ext_resource type="Texture2D" uid="uid://36rliefn0d5o" path="res://assets/sprites/ui/health bar/health_bar_progress.png" id="8_tu775"]
 [ext_resource type="AudioStream" uid="uid://c8gaafns81xji" path="res://assets/music/death screen.ogg" id="11_cssmh"]
 [ext_resource type="Script" uid="uid://cigjnd8fefi7p" path="res://scripts/audio/helper_scripts/audio_manager_helper.gd" id="12_nnstu"]
+[ext_resource type="Script" uid="uid://de3seswa3a761" path="res://scripts/boss/boss_healt_bar.gd" id="12_pm7tv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ndpnn"]
 size = Vector2(27.264038, 628.0924)
 
-[node name="TestLevel" type="Node2D" unique_id=1893449969]
+[node name="TestLevel" type="Node2D" unique_id=1893449969 node_paths=PackedStringArray("level_boss")]
 script = ExtResource("1_5coqi")
+level_boss = NodePath("Worm/WormBoss")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2015089691]
+position = Vector2(-9, -9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1914820997]
 position = Vector2(5, 181)
@@ -92,13 +96,48 @@ position = Vector2(304, 187)
 element = 1
 texture = "uid://eujy5j8tlopn"
 
-[node name="Sprite2D" type="Sprite2D" parent="Minions" unique_id=446329336]
-position = Vector2(162, 92)
-texture = ExtResource("3_tu775")
+[node name="Worm" type="Node2D" parent="." unique_id=490864717]
+position = Vector2(0, 1)
 
-[node name="Player" parent="." unique_id=389095423 instance=ExtResource("2_nnbuc")]
+[node name="worm_part8" parent="Worm" unique_id=769181568 node_paths=PackedStringArray("part_to_follow") instance=ExtResource("4_pm7tv")]
+position = Vector2(402, 61)
+part_to_follow = NodePath("../worm_part7")
+
+[node name="worm_part7" parent="Worm" unique_id=1444417340 node_paths=PackedStringArray("part_to_follow") instance=ExtResource("4_pm7tv")]
+position = Vector2(402, 61)
+part_to_follow = NodePath("../worm_part6")
+
+[node name="worm_part6" parent="Worm" unique_id=1184935546 node_paths=PackedStringArray("part_to_follow") instance=ExtResource("4_pm7tv")]
+position = Vector2(402, 61)
+part_to_follow = NodePath("../worm_part5")
+
+[node name="worm_part5" parent="Worm" unique_id=1092613371 node_paths=PackedStringArray("part_to_follow") instance=ExtResource("4_pm7tv")]
+position = Vector2(402, 61)
+part_to_follow = NodePath("../worm_part4")
+
+[node name="worm_part4" parent="Worm" unique_id=1267246689 node_paths=PackedStringArray("part_to_follow") instance=ExtResource("4_pm7tv")]
+position = Vector2(402, 61)
+part_to_follow = NodePath("../worm_part3")
+
+[node name="worm_part3" parent="Worm" unique_id=1400740074 node_paths=PackedStringArray("part_to_follow") instance=ExtResource("4_pm7tv")]
+position = Vector2(402, 61)
+part_to_follow = NodePath("../worm_part2")
+
+[node name="worm_part2" parent="Worm" unique_id=936907927 node_paths=PackedStringArray("part_to_follow") instance=ExtResource("4_pm7tv")]
+position = Vector2(416, 60)
+part_to_follow = NodePath("../worm_part")
+
+[node name="worm_part" parent="Worm" unique_id=619503174 node_paths=PackedStringArray("part_to_follow") instance=ExtResource("4_pm7tv")]
+position = Vector2(420, 59)
+part_to_follow = NodePath("../WormBoss")
+
+[node name="WormBoss" parent="Worm" unique_id=171649054 node_paths=PackedStringArray("player") instance=ExtResource("4_nnstu")]
+position = Vector2(427, 59)
+player = NodePath("../../Player")
+
+[node name="Player" parent="." unique_id=389095423 groups=["Player"] instance=ExtResource("2_nnbuc")]
 unique_name_in_owner = true
-position = Vector2(259, 122)
+position = Vector2(290, 133)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1660162347]
 
@@ -160,6 +199,31 @@ texture_over = ExtResource("7_5coqi")
 texture_progress = ExtResource("8_tu775")
 script = ExtResource("3_nnbuc")
 player = NodePath("../../Player")
+
+[node name="BossHealtBar" type="TextureProgressBar" parent="UI" unique_id=1198298553 node_paths=PackedStringArray("boss")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -161.375
+offset_top = -50.0
+offset_right = -79.78125
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("6_tegp7")
+texture_over = ExtResource("7_5coqi")
+texture_progress = ExtResource("8_tu775")
+script = ExtResource("12_pm7tv")
+boss = NodePath("../../Worm/WormBoss")
 
 [node name="Debug_Label" type="Label" parent="UI" unique_id=2109372396]
 unique_name_in_owner = true

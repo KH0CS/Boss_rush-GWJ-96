@@ -3,6 +3,9 @@ extends Node2D
 ## this file was to test if maaacks level_lost system works for us
 signal level_lost
 
+@export var level_boss: Boss
+
+
 @onready var debug_label: Label = %Debug_Label
 #@export var boss_music 
 
