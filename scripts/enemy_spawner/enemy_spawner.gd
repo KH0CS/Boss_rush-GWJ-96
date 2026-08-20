@@ -1,9 +1,15 @@
+
 extends Node2D
 
-@onready var world = get_node("/root/World")
+
+@onready var world = get_node("/root/enemy_spawner")
+
+
+
 
 var old_man_mob_scene := preload("res://scenes/old_man_mob.tscn")
 var spawn_points = []
+
 
 # This is iterating (looking through) the children of the enemy_spawner 
 # and is specifically looking for the marker 2D which I have 4 of

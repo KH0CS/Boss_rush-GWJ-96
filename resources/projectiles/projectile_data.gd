@@ -9,10 +9,4 @@ extends Resource
 #@export var element: Type.elements = Type.elements.FIRE
 @export var damage: float = 10
 @export var heal:  float = 0
-@export var speed: float = 150.0
 @export var max_distance: float = 1000
-
-
-
-## Possible idea for on hit stuff (scope creep)
-@export var on_hit_behavior: PackedScene

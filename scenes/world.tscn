@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_71j4m"]
 [ext_resource type="PackedScene" uid="uid://bc07j1rtpw0sa" path="res://scenes/dummy.tscn" id="2_rwgxs"]
-[ext_resource type="PackedScene" uid="uid://h8rr6hjm3a3q" path="res://scenes/enemy_spawner.tscn" id="3_4wyf3"]
 
 [node name="World" type="Node2D" unique_id=26372252]
 
@@ -89,5 +88,3 @@ texture = "uid://eujy5j8tlopn"
 
 [node name="Player" parent="." unique_id=389095423 instance=ExtResource("1_nnsk1")]
 position = Vector2(320, 181)
-
-[node name="enemy_spawner" parent="." unique_id=1075598057 instance=ExtResource("3_4wyf3")]
