@@ -6,18 +6,19 @@
 script = ExtResource("1_ks1gq")
 
 [node name="top_left_spawn" type="Marker2D" parent="." unique_id=409056488]
+position = Vector2(340, 0)
 
 [node name="top_right_spawn" type="Marker2D" parent="." unique_id=150189063]
 position = Vector2(640, 0)
 
 [node name="bottom_left_spawn" type="Marker2D" parent="." unique_id=304597729]
-position = Vector2(0, 360)
+position = Vector2(340, 360)
 
 [node name="bottom_right_spawn" type="Marker2D" parent="." unique_id=1878751092]
 position = Vector2(639, 360)
 
-[node name="Timer" type="Timer" parent="." unique_id=836685055]
+[node name="timer" type="Timer" parent="." unique_id=836685055]
 wait_time = 0.449
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

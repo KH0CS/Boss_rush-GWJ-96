@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bl0noyhdq3vdt" path="res://scenes/enemies/minions/minion_base.gd" id="1_pvhpb"]
 [ext_resource type="Texture2D" uid="uid://eujy5j8tlopn" path="res://assets/sprites/minions/ice_minion.png" id="2_3xvil"]
-[ext_resource type="PackedScene" uid="uid://h6qxm878hwn7" path="res://scenes/spawn_manager.tscn" id="3_tfgua"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ndpnn"]
 radius = 8.0
@@ -34,8 +33,5 @@ one_shot = true
 [node name="ColliderBox" type="CollisionShape2D" parent="." unique_id=1700436956]
 shape = SubResource("CircleShape2D_5r1x3")
 debug_color = Color(0.79061246, 0.3755464, 0.5496098, 0.41960785)
-
-[node name="spawner" parent="." unique_id=1561782287 instance=ExtResource("3_tfgua")]
-position = Vector2(222, 285)
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

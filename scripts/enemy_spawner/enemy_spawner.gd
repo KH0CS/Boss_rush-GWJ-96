@@ -1,29 +1,12 @@
 
 extends Node2D
 
-@export var move_range : int = 50
-var distance_traveled: float = 0
 
-@export var speed = 50
-var current_direction: Vector2
-
-@export var min_time: float = 0.1
-@export var max_time: float = 1
-
-
-@onready var visual: AnimatedSprite2D 
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
-@onready var move_timer: Timer = $Timer
-@onready var world = get_node("/root/World")
+@onready var world = get_node("/root/enemy_spawner")
 
 
 
 
-func _process(delta: float) -> void:
-	if current_direction.x < 0:
-		visual.flip_h = true
-	else:
-		visual.flip_h = false
 var old_man_mob_scene := preload("res://scenes/old_man_mob.tscn")
 var spawn_points = []
 
@@ -32,8 +15,6 @@ var spawn_points = []
 # and is specifically looking for the marker 2D which I have 4 of
 # there are 4 so I append them into the spawn_points list variable
 func _ready() -> void:
-	move_timer.wait_time = randf_range(min_time, max_time)
-	move_timer.start()
 	for i in get_children():
 		if i is Marker2D:
 			spawn_points.append(i)
