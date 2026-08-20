@@ -85,9 +85,10 @@ func _physics_process(_delta: float) -> void:
 		# causing minions to not get sucked in even if in the vacuum
 		## if minions_in_vacuum.is_empty(): # putting loop on this statement will make it more effecient but the pulling of the minions is will one by one except for the first pull
 		for body in vaccum.get_overlapping_bodies():
-			if not body in minions_in_vacuum:
-				minions_in_vacuum.append(body)
-		
+			if body is Minion:
+				if body not in minions_in_vacuum:
+					minions_in_vacuum.append(body)
+			
 		
 		# minion handling logic
 		for minion in minions_in_vacuum:

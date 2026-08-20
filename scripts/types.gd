@@ -11,6 +11,6 @@ enum elements {
 }
 
 enum target {
-	Player,
-	Boss
+	PLAYER,
+	BOSS
 }

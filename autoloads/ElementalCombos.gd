@@ -58,6 +58,10 @@ var combos: Dictionary = {
 		"recepie": { Type.elements.LIGHTNING : 1, Type.elements.ICE : 1, Type.elements.EARTH : 1 },
 		"shot_data": preload("res://scenes/shots/premade_shots/spread_shot.tscn")
 	},
+	"fire lightning earth": {
+		"recepie": { Type.elements.LIGHTNING : 1, Type.elements.FIRE : 1, Type.elements.EARTH : 1 },
+		"shot_data": preload("res://scenes/shots/premade_shots/spread_shot.tscn")
+	},
 }
 
 
@@ -79,5 +83,6 @@ func get_elemental_combo(given_elements: Array[Type.elements]) -> PackedScene:
 			shot = combos[combo_name]["shot_data"]
 			EventBus.shot_fired.emit(combo_name)
 			return shot
+	print(str(given_elements))
 	push_error("Didnt find compatible combo")
 	return shot

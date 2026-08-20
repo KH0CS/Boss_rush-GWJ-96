@@ -10,8 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://btf7yxnsdpl3d" path="res://assets/sfx/suction.wav" id="6_r1p7h"]
 [ext_resource type="AudioStream" uid="uid://erccisqk84k7" path="res://assets/sfx/suction (mid-length).wav" id="7_h8jr5"]
 [ext_resource type="AudioStream" uid="uid://jquw64buxl5" path="res://assets/sfx/dodge.wav" id="9_evin1"]
-[ext_resource type="AudioStream" uid="uid://5h3dw653t8ce" path="res://assets/sfx/footstep.wav" id="9_m54sr"]
-[ext_resource type="AudioStream" uid="uid://cur3kslckuecr" path="res://assets/sfx/player_takingdamage.wav" id="10_h8jr5"]
+[ext_resource type="AudioStream" uid="uid://bfk2jafgae2qn" path="res://assets/sfx/footstep_var4.wav" id="9_h8jr5"]
+[ext_resource type="AudioStream" uid="uid://4xglk8ka70g8" path="res://assets/sfx/player_takingdamage_v2.wav" id="10_h8jr5"]
 
 [sub_resource type="Resource" id="Resource_gamlx"]
 resource_name = "beeps"
@@ -84,10 +84,9 @@ resource_name = "Footstep"
 script = ExtResource("2_0f8da")
 limit = 2
 type = 8
-sound_effect = ExtResource("9_m54sr")
+sound_effect = ExtResource("9_h8jr5")
 volume = -8.600000000000001
-volume_randomness = 1.0
-pitch_randomness = 0.25
+pitch_randomness = 0.2
 bus_name = &"SFX"
 metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
 
@@ -97,7 +96,8 @@ script = ExtResource("2_0f8da")
 limit = 2
 type = 9
 sound_effect = ExtResource("10_h8jr5")
-volume = -13.3
+volume = -7.0
+pitch_randomness = 0.1
 metadata/_custom_type_script = "uid://d0osm5d7tp6qb"
 
 [sub_resource type="Resource" id="Resource_nql4i"]

@@ -24,9 +24,21 @@ func _physics_process(delta: float) -> void:
 	distance_traveled += speed * delta
 	if distance_traveled >= data.max_distance:
 		queue_free()
-	
 
-#func _on_body_entered(body: Node2D) -> void:
-	#if body is target_type:
-		#if body.has_method(take_damage):
-			#body.take_damage()
+
+func _on_body_entered(body: Node2D) -> void:
+	match target_type:
+		Type.target.PLAYER:
+			print("Taarget was the player")
+			if body is Player:
+				if body.has_method("take_damage"):
+					body.take_damage(data.damage)
+					queue_free()
+		Type.target.BOSS:
+			print("Taarget was the boss")
+			
+			if body is Boss:
+				if body.has_method("take_damage"):
+					body.take_damage(data.damage)
+					queue_free()
+					

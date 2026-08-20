@@ -38,6 +38,9 @@ func shoot() -> void:
 	# set location
 	spawned_projetile.global_position = shooter.global_position
 	
+	# set target type
+	spawned_projetile.target_type = target_type
+	
 	# Set projectile charge
 	# TODO: fix, workaround for now (power needs to be passed
 	if power > 0:

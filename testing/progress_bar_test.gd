@@ -1,4 +1,5 @@
 extends TextureProgressBar
+class_name PlayerHealthBar
 
 @export var player: Player
 
