@@ -13,6 +13,8 @@ metadata/_custom_type_script = "uid://c8okbg2doh58w"
 radius = 6.0
 
 [node name="FireballProjectile" type="Area2D" unique_id=1199899841 node_paths=PackedStringArray("visual")]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_kkkvl")
 data = SubResource("Resource_kkkvl")
 visual = NodePath("visual")
@@ -23,3 +25,5 @@ shape = SubResource("CircleShape2D_5r1x3")
 
 [node name="visual" type="Sprite2D" parent="." unique_id=1112877519]
 texture = ExtResource("3_h248l")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

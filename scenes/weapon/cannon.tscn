@@ -63,6 +63,8 @@ position = Vector2(26, 0)
 [node name="Vaccum" type="Area2D" parent="." unique_id=803435418]
 unique_name_in_owner = true
 position = Vector2(18, 0)
+collision_layer = 0
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vaccum" unique_id=1337472986]
 polygon = PackedVector2Array(-8, -3, -8, 3, 91, 33, 93, 0, 91, -34)

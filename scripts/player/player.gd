@@ -23,6 +23,7 @@ var move_velocity: Vector2 = Vector2.ZERO
 var external_velocity: Vector2 = Vector2.ZERO
 
 @onready var charge_bar: ProgressBar = %ChargeBar
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 
 func _ready() -> void:
@@ -55,8 +56,10 @@ func movement(delta: float):
 	if input_dir != Vector2.ZERO:
 		if SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP not in AudioManager.active_looping_sounds.keys():
 			AudioManager.play_loop(SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP)
+		animation_player.play("walk_forward")
 		move_velocity = move_velocity.move_toward(input_dir * move_speed, acceleration * delta)
 	else:
+		animation_player.play("idle")
 		if SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP in AudioManager.active_looping_sounds.keys():
 			AudioManager.stop_loop(SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP)
 		move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta)

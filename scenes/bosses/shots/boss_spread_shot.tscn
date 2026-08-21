@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bnbbhjwtoccai"]
+
+[ext_resource type="PackedScene" uid="uid://dqw0lryrtcdtn" path="res://scenes/shots/shot_base.tscn" id="1_uhx6d"]
+[ext_resource type="PackedScene" uid="uid://yegaluim1dyv" path="res://scenes/projectiles/Fireball_projectile.tscn" id="2_5nqld"]
+
+[node name="BossSpreadShot" unique_id=1113263127 instance=ExtResource("1_uhx6d")]
+projectiles = Array[PackedScene]([ExtResource("2_5nqld"), ExtResource("2_5nqld"), ExtResource("2_5nqld")])
+spread = 60.0
+target_type = 0
+default_power = 0.5

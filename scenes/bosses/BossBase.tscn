@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://17jmlt75h02n"]
+
+[ext_resource type="Script" uid="uid://b3u8k1jh287mx" path="res://scenes/bosses/state_machine.gd" id="1_4lfmp"]
+[ext_resource type="Script" uid="uid://c6260uad3rm10" path="res://scenes/bosses/boss_base.gd" id="1_bm5vh"]
+[ext_resource type="Texture2D" uid="uid://d4ch677tgc2er" path="res://assets/sprites/minions/boss_test.png" id="1_gl7eg"]
+[ext_resource type="Script" uid="uid://bh75rovkwkxd3" path="res://scenes/states/boss_idle.gd" id="2_s07ok"]
+[ext_resource type="Script" uid="uid://6q4pach4r8bn" path="res://scenes/states/boss_follow.gd" id="5_te83k"]
+[ext_resource type="Script" uid="uid://belquh4lun4d1" path="res://scenes/states/boss_attack.gd" id="6_fqeq6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ndpnn"]
+radius = 15.0
+
+[sub_resource type="Animation" id="Animation_bm5vh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_te83k"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.375, 0.625, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 0), Vector2(0, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_fqeq6"]
+resource_name = "spin"
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.1415927, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fqeq6"]
+_data = {
+&"RESET": SubResource("Animation_bm5vh"),
+&"idle": SubResource("Animation_te83k"),
+&"spin": SubResource("Animation_fqeq6")
+}
+
+[node name="BossBase" type="CharacterBody2D" unique_id=2064250110 node_paths=PackedStringArray("shoot_point")]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_bm5vh")
+shoot_point = NodePath("shoot_point")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1633009484]
+shape = SubResource("CircleShape2D_ndpnn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1980804759]
+texture = ExtResource("1_gl7eg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=556028082]
+libraries/ = SubResource("AnimationLibrary_fqeq6")
+
+[node name="State Machine" type="Node" parent="." unique_id=1641631229 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_4lfmp")
+initial_state = NodePath("BossIdle")
+
+[node name="BossIdle" type="Node" parent="State Machine" unique_id=427886969 node_paths=PackedStringArray("timer", "boss", "animation_player", "sprite", "transition_States")]
+script = ExtResource("2_s07ok")
+timer = NodePath("../../StateTimer")
+boss = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+transition_States = [NodePath("../BossFollow"), NodePath("../BossAttack")]
+metadata/_custom_type_script = "uid://bh75rovkwkxd3"
+
+[node name="BossFollow" type="Node" parent="State Machine" unique_id=840154539 node_paths=PackedStringArray("timer", "boss", "animation_player", "sprite", "transition_States")]
+script = ExtResource("5_te83k")
+move_speed = 100.0
+max_state_time = 3.0
+timer = NodePath("../../StateTimer")
+boss = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+transition_States = [NodePath("../BossIdle")]
+metadata/_custom_type_script = "uid://6q4pach4r8bn"
+
+[node name="BossAttack" type="Node" parent="State Machine" unique_id=1402796697 node_paths=PackedStringArray("timer", "boss", "animation_player", "sprite", "transition_States")]
+script = ExtResource("6_fqeq6")
+timer = NodePath("../../StateTimer")
+boss = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+transition_States = [NodePath("../BossIdle"), NodePath("../BossFollow")]
+metadata/_custom_type_script = "uid://belquh4lun4d1"
+
+[node name="StateTimer" type="Timer" parent="." unique_id=1094922412]
+
+[node name="shoot_point" type="Marker2D" parent="." unique_id=1755691206]
