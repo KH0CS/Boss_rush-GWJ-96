@@ -25,14 +25,11 @@ extends Node2D
 
 @onready var cannon_effects: ShootingEffects = $Effects
 
-
 # recoil visual effect
 var rest_position: Vector2 = position
 var recoil_offset: float = 10.0
 var recoil_out_time: float = 0.05
 var recoil_return_time: float = 0.2
-
-
 
 var is_charging := false
 var charge_time := 0.0

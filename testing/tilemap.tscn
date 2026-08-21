@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dbguotf1x5mcu" path="res://assets/tilemap/grass.png" id="2_3qx23"]
 [ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="3_6vgr3"]
 [ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="4_3qx23"]
+[ext_resource type="PackedScene" uid="uid://bmwbqtdq7445p" path="res://scenes/foliage/grass.tscn" id="5_6vgr3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7g4bd"]
 texture = ExtResource("1_t46ya")
@@ -77,9 +78,6 @@ tile_set = SubResource("TileSet_0x4cu")
 tile_map_data = PackedByteArray("AAANAA4AAAAAAAIAAAANAA0AAAAAAAEAAAANAAwAAAAAAAAAAAAOAAwAAAABAAAAAAAPAAwAAAAFAAMAAAAQAAwAAAAFAAAAAAAOAA4AAAABAAIAAAAPAA4AAAACAAIAAAAPAA0AAAAGAAQAAAAOAA0AAAAGAAAAAAAQAA0AAAABAAIAAAARAA0AAAABAAIAAAASAA0AAAABAAIAAAATAA0AAAABAAIAAAAUAA0AAAACAAIAAAAUAAwAAAACAAEAAAAUAAsAAAACAAEAAAAUAAoAAAACAAEAAAATAAwAAAAFAAAAAAASAAwAAAAFAAAAAAARAAwAAAABAAEAAAASAAsAAAAEAAAAAAATAAsAAAABAAEAAAATAAoAAAABAAEAAAASAAoAAAABAAEAAAARAAoAAAABAAEAAAARAAsAAAAFAAAAAAAQAAsAAAABAAEAAAAQAAoAAAAFAAAAAAAPAAsAAAAAAAEAAAAPAAoAAAAAAAEAAAAPAAkAAAAAAAAAAAAQAAkAAAABAAAAAAARAAkAAAABAAAAAAASAAkAAAABAAAAAAATAAkAAAABAAAAAAAUAAkAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_vjpha")
 
-[node name="Player" parent="." unique_id=389095423 instance=ExtResource("3_6vgr3")]
-position = Vector2(260, 208)
-
 [node name="MinionTest" parent="." unique_id=1959686566 instance=ExtResource("4_3qx23")]
 position = Vector2(223, 230)
 
@@ -106,3 +104,72 @@ position = Vector2(404, 239)
 
 [node name="MinionTest9" parent="." unique_id=35653268 instance=ExtResource("4_3qx23")]
 position = Vector2(282, 257)
+
+[node name="Grass" parent="." unique_id=1997386332 instance=ExtResource("5_6vgr3")]
+position = Vector2(246, 256)
+
+[node name="Grass2" parent="." unique_id=1801363530 instance=ExtResource("5_6vgr3")]
+position = Vector2(265, 249)
+
+[node name="Grass3" parent="." unique_id=593725705 instance=ExtResource("5_6vgr3")]
+position = Vector2(258, 260)
+
+[node name="Grass4" parent="." unique_id=682334162 instance=ExtResource("5_6vgr3")]
+position = Vector2(306, 255)
+
+[node name="Grass5" parent="." unique_id=2053622091 instance=ExtResource("5_6vgr3")]
+position = Vector2(317, 261)
+
+[node name="Grass6" parent="." unique_id=580195584 instance=ExtResource("5_6vgr3")]
+position = Vector2(328, 267)
+
+[node name="Grass7" parent="." unique_id=1415180218 instance=ExtResource("5_6vgr3")]
+position = Vector2(291, 265)
+
+[node name="Grass8" parent="." unique_id=484091386 instance=ExtResource("5_6vgr3")]
+position = Vector2(293, 245)
+
+[node name="Grass9" parent="." unique_id=853544288 instance=ExtResource("5_6vgr3")]
+position = Vector2(315, 239)
+
+[node name="Grass10" parent="." unique_id=918529776 instance=ExtResource("5_6vgr3")]
+position = Vector2(286, 244)
+
+[node name="Grass11" parent="." unique_id=2125310664 instance=ExtResource("5_6vgr3")]
+position = Vector2(274, 245)
+
+[node name="Grass12" parent="." unique_id=752905469 instance=ExtResource("5_6vgr3")]
+position = Vector2(299, 258)
+
+[node name="Grass13" parent="." unique_id=1840271806 instance=ExtResource("5_6vgr3")]
+position = Vector2(289, 252)
+
+[node name="Grass14" parent="." unique_id=581539284 instance=ExtResource("5_6vgr3")]
+position = Vector2(300, 249)
+
+[node name="Grass15" parent="." unique_id=1595952782 instance=ExtResource("5_6vgr3")]
+position = Vector2(287, 236)
+
+[node name="Grass16" parent="." unique_id=312024595 instance=ExtResource("5_6vgr3")]
+position = Vector2(301, 238)
+
+[node name="Grass17" parent="." unique_id=1285643274 instance=ExtResource("5_6vgr3")]
+position = Vector2(325, 256)
+
+[node name="Grass18" parent="." unique_id=1824727661 instance=ExtResource("5_6vgr3")]
+position = Vector2(340, 269)
+
+[node name="Grass19" parent="." unique_id=1219490373 instance=ExtResource("5_6vgr3")]
+position = Vector2(278, 262)
+
+[node name="Grass20" parent="." unique_id=1780223919 instance=ExtResource("5_6vgr3")]
+position = Vector2(331, 243)
+
+[node name="Grass21" parent="." unique_id=297758696 instance=ExtResource("5_6vgr3")]
+position = Vector2(314, 274)
+
+[node name="Grass22" parent="." unique_id=318045214 instance=ExtResource("5_6vgr3")]
+position = Vector2(260, 279)
+
+[node name="Player" parent="." unique_id=389095423 instance=ExtResource("3_6vgr3")]
+position = Vector2(260, 208)
