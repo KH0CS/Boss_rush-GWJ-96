@@ -3,32 +3,46 @@
 [ext_resource type="Texture2D" uid="uid://luop5pl2nlqe" path="res://assets/tilemap/tilemap.png" id="1_t46ya"]
 [ext_resource type="Texture2D" uid="uid://dbguotf1x5mcu" path="res://assets/tilemap/grass.png" id="2_3qx23"]
 [ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="3_6vgr3"]
+[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="4_3qx23"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7g4bd"]
 texture = ExtResource("1_t46ya")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:0/0 = 0
 6:0/0 = 0
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
 2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
 6:1/0 = 0
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:2/0 = 0
 6:2/0 = 0
 5:3/0 = 0
 6:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_0x4cu"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7g4bd")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p2hc0"]
@@ -64,3 +78,31 @@ tile_map_data = PackedByteArray("AAANAA4AAAAAAAIAAAANAA0AAAAAAAEAAAANAAwAAAAAAAA
 tile_set = SubResource("TileSet_vjpha")
 
 [node name="Player" parent="." unique_id=389095423 instance=ExtResource("3_6vgr3")]
+position = Vector2(260, 208)
+
+[node name="MinionTest" parent="." unique_id=1959686566 instance=ExtResource("4_3qx23")]
+position = Vector2(223, 230)
+
+[node name="MinionTest2" parent="." unique_id=1676376573 instance=ExtResource("4_3qx23")]
+position = Vector2(349, 288)
+
+[node name="MinionTest3" parent="." unique_id=1328180364 instance=ExtResource("4_3qx23")]
+position = Vector2(193, 226)
+
+[node name="MinionTest4" parent="." unique_id=91303394 instance=ExtResource("4_3qx23")]
+position = Vector2(366, 231)
+
+[node name="MinionTest5" parent="." unique_id=222651212 instance=ExtResource("4_3qx23")]
+position = Vector2(310, 251)
+
+[node name="MinionTest6" parent="." unique_id=1535386460 instance=ExtResource("4_3qx23")]
+position = Vector2(214, 165)
+
+[node name="MinionTest7" parent="." unique_id=2041100743 instance=ExtResource("4_3qx23")]
+position = Vector2(186, 170)
+
+[node name="MinionTest8" parent="." unique_id=797492358 instance=ExtResource("4_3qx23")]
+position = Vector2(404, 239)
+
+[node name="MinionTest9" parent="." unique_id=35653268 instance=ExtResource("4_3qx23")]
+position = Vector2(282, 257)

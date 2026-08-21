@@ -10,7 +10,7 @@ var health: float = 100:
 	set(value):
 		health = clamp(value, 0, max_health)
 		EventBus.player_health_changed.emit(health)
-		if health == 0:
+		if health <= 0:
 			EventBus.player_died.emit()
 
 # Player movement

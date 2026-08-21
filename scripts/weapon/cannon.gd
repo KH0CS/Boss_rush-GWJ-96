@@ -25,6 +25,15 @@ extends Node2D
 
 @onready var cannon_effects: ShootingEffects = $Effects
 
+
+# recoil visual effect
+var rest_position: Vector2 = position
+var recoil_offset: float = 10.0
+var recoil_out_time: float = 0.05
+var recoil_return_time: float = 0.2
+
+
+
 var is_charging := false
 var charge_time := 0.0
 
@@ -51,8 +60,6 @@ func _input(_event: InputEvent) -> void:
 	# Input release checks
 	if Input.is_action_just_released("shoot") and is_charging:
 		release_attack(charge_time)
-		is_charging = false
-		cannon_effects.shoot()
 	
 	if Input.is_action_just_released("vacuum") and vacuum_active:
 		vacuum_active = false
@@ -82,6 +89,8 @@ func _process(delta):
 		charge_time = min(charge_time, max_charge_time)
 	else:
 		charge_time = 0.0
+
+
 
 func _physics_process(_delta: float) -> void:
 	if vacuum_active == true:
@@ -119,6 +128,26 @@ func release_attack(time_held: float) -> void:
 	# only release projectile
 	if time_held > min_charge_to_release:
 		do_charged_attack(charge_ratio)
+	
+	is_charging = false
+	cannon_effects.shoot()
+	
+	
+	# push back effect of the cannon thingy!!
+	if has_node("RecoilTween"):
+		get_node("RecoilTween").kill()
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	
+	# push back opposite the direction gun is facing
+	var back_dir := Vector2.RIGHT.rotated(rotation + PI)
+	var recoil_pos := rest_position + back_dir * recoil_offset
+
+	tween.tween_property(self, "position", recoil_pos, recoil_out_time) \
+		.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position", rest_position, recoil_return_time) \
+		.set_ease(Tween.EASE_OUT)
 
 func do_charged_attack(power: float) -> void:
 	## Copy the first 3 elements from gun_storage

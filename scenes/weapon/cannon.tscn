@@ -75,6 +75,7 @@ emitting = false
 process_material = SubResource("ParticleProcessMaterial_tdidl")
 
 [node name="ShootEffect" type="GPUParticles2D" parent="Effects" unique_id=1893064635]
+position = Vector2(26, 0)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_7ref7")
 
