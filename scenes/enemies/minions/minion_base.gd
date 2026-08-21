@@ -41,6 +41,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	get_tree().get_nodes_in_group("minions").size()
 	if current_direction.x < 0:
 		visual.flip_h = true
 	else:
