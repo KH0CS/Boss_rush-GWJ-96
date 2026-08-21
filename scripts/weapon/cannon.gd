@@ -100,17 +100,17 @@ func _physics_process(_delta: float) -> void:
 				# apply SUCKING FORCE?!?!??!!!!
 				minion.apply_force((global_position - minion.global_position).normalized() * vacuum_power)
 				
-				# cancels the vacuum if the storage is full 
-				if gun_storage.size() == max_storage_size:
-					vacuum_active = false
-					minions_in_vacuum.clear()
-					AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
-				
 				# Adds the minion into the ammo
 				if global_position.distance_to(minion.global_position) < 30:
 					minion.collect()
 					add_ammo(minion.element)
 					minions_in_vacuum.erase(minion)
+					
+				# cancels the vacuum if the storage is full 
+				if gun_storage.size() == max_storage_size:
+					vacuum_active = false
+					minions_in_vacuum.clear()
+					AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
 
 
 func release_attack(time_held: float) -> void:
