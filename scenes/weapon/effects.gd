@@ -67,10 +67,10 @@ func _setup_shoot() -> void:
 	mat.direction = Vector3(1, 0, 0)
 	mat.spread = cone_half_angle_deg
 	mat.initial_velocity_min = 150.0
-	mat.initial_velocity_max = 2500
+	mat.initial_velocity_max = 250.0
 	mat.gravity = Vector3.ZERO
 	
-	mat.color = Color(1.0, 0.388, 0.173, 0.459)
+	mat.color = Color(0.863, 0.435, 0.0, 1.0)
 	
 	# --- size ---
 	mat.scale_min = 1.5
@@ -85,8 +85,8 @@ func _setup_shoot() -> void:
 	mat.scale_curve = curve_tex
 	
 	shoot_effect.process_material = mat
-	shoot_effect.amount = 12
-	shoot_effect.lifetime = 0.4
+	shoot_effect.amount = 6
+	shoot_effect.lifetime = 0.2
 	shoot_effect.one_shot = true
 	shoot_effect.explosiveness = 1.0
 	shoot_effect.emitting = false

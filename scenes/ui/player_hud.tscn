@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dqc3xcyylfjyx"]
+
+[ext_resource type="Script" uid="uid://n158kqdd31j5" path="res://testing/gun_storage_visual.gd" id="1_tfw32"]
+[ext_resource type="Texture2D" uid="uid://bb3nee0fj330i" path="res://assets/sprites/minions/fire_minion.png" id="2_nh6vl"]
+[ext_resource type="Texture2D" uid="uid://cpg8omxk0vo2e" path="res://assets/sprites/ui/health bar/health_bar_under.png" id="3_3cn05"]
+[ext_resource type="Texture2D" uid="uid://bwj8kneuej84y" path="res://assets/sprites/ui/health bar/health_bar_outline.png" id="4_bhaj2"]
+[ext_resource type="Texture2D" uid="uid://36rliefn0d5o" path="res://assets/sprites/ui/health bar/health_bar_progress.png" id="5_c78lu"]
+[ext_resource type="Script" uid="uid://b3u2tcc3kjf7h" path="res://testing/progress_bar_test.gd" id="6_7l16x"]
+[ext_resource type="Script" uid="uid://ccuu4m2fw5bu8" path="res://scenes/ui/combination_text.gd" id="7_nh6vl"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1159893243]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=34847884]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -35.0
+offset_right = -4.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GunStorageVisual" type="VBoxContainer" parent="PanelContainer" unique_id=160954720 node_paths=PackedStringArray("barrel", "storage")]
+layout_mode = 2
+script = ExtResource("1_tfw32")
+barrel = NodePath("Barrel")
+storage = NodePath("Storage")
+
+[node name="Label2" type="Label" parent="PanelContainer/GunStorageVisual" unique_id=862642130]
+layout_mode = 2
+text = "Barrel:"
+
+[node name="Barrel" type="GridContainer" parent="PanelContainer/GunStorageVisual" unique_id=1243919446]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/GunStorageVisual/Barrel" unique_id=457686760]
+layout_mode = 2
+texture = ExtResource("2_nh6vl")
+
+[node name="Label" type="Label" parent="PanelContainer/GunStorageVisual" unique_id=419356848]
+layout_mode = 2
+text = "Storage:"
+
+[node name="Storage" type="GridContainer" parent="PanelContainer/GunStorageVisual" unique_id=1375072164]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/GunStorageVisual/Storage" unique_id=265192008]
+layout_mode = 2
+texture = ExtResource("2_nh6vl")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=2057345469]
+offset_left = 15.0
+offset_top = 332.0
+offset_right = 59.75
+offset_bottom = 338.0
+scale = Vector2(4, 4)
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("3_3cn05")
+texture_over = ExtResource("4_bhaj2")
+texture_progress = ExtResource("5_c78lu")
+script = ExtResource("6_7l16x")
+
+[node name="CombinationText" type="Label" parent="." unique_id=1472767800]
+offset_left = 37.0
+offset_top = 109.0
+offset_right = 77.0
+offset_bottom = 122.0
+script = ExtResource("7_nh6vl")

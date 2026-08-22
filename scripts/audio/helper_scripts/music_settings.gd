@@ -22,7 +22,6 @@ enum TRACK_TYPE {
 	UNASSIGNED_MUSIC_TRACK, # Add new tracks below this line, separated by commas
 	WORM_BOSS_P1,
 	DEATH_SCREEN
-
 }
 
 ## -------------------------- Inspector Settings - Configure these for each MusicTrack resource in the inspector ----------##

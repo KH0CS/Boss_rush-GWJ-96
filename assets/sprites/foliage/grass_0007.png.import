@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l1b7syu680x3"
-path="res://.godot/imported/grass_0.png-fa24b07878a7502d1bca8cfcb918279b.ctex"
+uid="uid://cc01ognp1q07i"
+path="res://.godot/imported/grass_0007.png-4d92bc9cb9b129e0f28a6d232da9bfaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/foliage/grass_0.png"
-dest_files=["res://.godot/imported/grass_0.png-fa24b07878a7502d1bca8cfcb918279b.ctex"]
+source_file="res://assets/sprites/foliage/grass_0007.png"
+dest_files=["res://.godot/imported/grass_0007.png-4d92bc9cb9b129e0f28a6d232da9bfaa.ctex"]
 
 [params]
 

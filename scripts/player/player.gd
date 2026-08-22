@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+# Had to make my own implementation because of weird bug when instatiating returning 'null' EventBus donnt work for instatiated scences
+signal health_changed(value)
 
 @export var gun: Cannon
 
@@ -9,6 +11,9 @@ extends CharacterBody2D
 var health: float = 100:
 	set(value):
 		health = clamp(value, 0, max_health)
+		
+		health_changed.emit(value)
+		
 		EventBus.player_health_changed.emit(health)
 		if health <= 0:
 			EventBus.player_died.emit()
