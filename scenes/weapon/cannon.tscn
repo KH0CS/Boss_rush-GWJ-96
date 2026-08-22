@@ -2,11 +2,57 @@
 
 [ext_resource type="Script" uid="uid://bwi6fqaak25di" path="res://scripts/weapon/cannon.gd" id="1_0wvxs"]
 [ext_resource type="Texture2D" uid="uid://0syu3654gky8" path="res://assets/sprites/cannon/cannon.png" id="2_hako5"]
+[ext_resource type="Script" uid="uid://c0xao8najbalj" path="res://scenes/weapon/effects.gd" id="3_0bua0"]
+[ext_resource type="Texture2D" uid="uid://biv0rh1qk6fwe" path="res://assets/sprites/cannon/shoot.png" id="3_hako5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tdidl"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ref7"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bua0"]
+atlas = ExtResource("3_hako5")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqxti"]
+atlas = ExtResource("3_hako5")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ref7"]
+atlas = ExtResource("3_hako5")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdidl"]
+atlas = ExtResource("3_hako5")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjpha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bua0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqxti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ref7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdidl")
+}],
+"loop": 0,
+"name": &"fire",
+"speed": 4.0
+}]
 
 [node name="Cannon" type="Node2D" unique_id=298548447]
 script = ExtResource("1_0wvxs")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1459979105]
+[node name="CannonSprite" type="Sprite2D" parent="." unique_id=1459979105]
 position = Vector2(18, 0)
 texture = ExtResource("2_hako5")
 
@@ -22,6 +68,28 @@ collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vaccum" unique_id=1337472986]
 polygon = PackedVector2Array(-8, -3, -8, 3, 91, 33, 93, 0, 91, -34)
+
+[node name="Effects" type="Node2D" parent="." unique_id=24216853]
+script = ExtResource("3_0bua0")
+
+[node name="VacuumEffect" type="GPUParticles2D" parent="Effects" unique_id=522228692]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_tdidl")
+
+[node name="ShootEffect" type="GPUParticles2D" parent="Effects" unique_id=1893064635]
+position = Vector2(26, 0)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_7ref7")
+
+[node name="ShootAnimation" type="AnimatedSprite2D" parent="Effects" unique_id=347249573]
+visible = false
+position = Vector2(30, 0)
+sprite_frames = SubResource("SpriteFrames_vjpha")
+animation = &"fire"
+speed_scale = 4.0
+
+[node name="VacuumMarker" type="Marker2D" parent="Effects" unique_id=676915280]
+position = Vector2(34, 0)
 
 [connection signal="body_entered" from="Vaccum" to="." method="_on_vaccum_body_entered"]
 [connection signal="body_exited" from="Vaccum" to="." method="_on_vaccum_body_exited"]
