@@ -1,0 +1,430 @@
+[gd_scene format=4 uid="uid://f00y8y686yw0"]
+
+[ext_resource type="Script" uid="uid://3psypxrn215x" path="res://scenes/levels/tutorial.gd" id="1_7ac3l"]
+[ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_84vya"]
+[ext_resource type="PackedScene" uid="uid://bmwbqtdq7445p" path="res://scenes/foliage/grass.tscn" id="3_3e81p"]
+[ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="3_cw4as"]
+[ext_resource type="PackedScene" uid="uid://dqc3xcyylfjyx" path="res://scenes/ui/player_hud.tscn" id="6_7ac3l"]
+[ext_resource type="Texture2D" uid="uid://luop5pl2nlqe" path="res://assets/tilemap/tilemap.png" id="7_3e81p"]
+[ext_resource type="AudioStream" uid="uid://c8gaafns81xji" path="res://assets/music/death screen.ogg" id="11_hux2q"]
+[ext_resource type="Script" uid="uid://cigjnd8fefi7p" path="res://scripts/audio/helper_scripts/audio_manager_helper.gd" id="12_n1gr0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4a02d"]
+texture = ExtResource("7_3e81p")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+6:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0 = 0
+6:2/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_uu0hj"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_4a02d")
+
+[node name="TutorialLevel" type="Node2D" unique_id=1893449969]
+script = ExtResource("1_7ac3l")
+
+[node name="Environment" type="Node2D" parent="." unique_id=461049242]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Environment" unique_id=2074431463]
+tile_map_data = PackedByteArray("AAALAA8AAAAGAAEAAAAMAA8AAAAGAAEAAAAMABAAAAAGAAEAAAANABAAAAAGAAEAAAAOABEAAAAFAAMAAAAPABEAAAAGAAEAAAAPABAAAAAFAAAAAAAOABAAAAAGAAEAAAANABEAAAAGAAEAAAAMABEAAAAGAAEAAAALABEAAAAGAAEAAAALABAAAAAGAAEAAAANAA8AAAAGAAEAAAAOAA8AAAAGAAEAAAAPAA8AAAAGAAEAAAAQAA8AAAAGAAEAAAARAA8AAAAFAAMAAAASAA8AAAAGAAEAAAASABAAAAAGAAEAAAARABAAAAAFAAAAAAARABEAAAAFAAEAAAAQABEAAAAGAAAAAAAQABAAAAAFAAEAAAAOABIAAAAGAAEAAAALABIAAAAGAAEAAAAPAA4AAAAGAAEAAAALAA4AAAAFAAAAAAANAA4AAAAGAAEAAAAMAA0AAAAGAAEAAAAQAA0AAAAGAAEAAAANAA0AAAAGAAMAAAAOAAwAAAAGAAEAAAAOAA0AAAAGAAEAAAANAAwAAAAGAAEAAAAPAA0AAAAGAAEAAAAOAA4AAAAGAAEAAAAMAA4AAAAGAAEAAAAQAA4AAAAGAAEAAAALAA0AAAAGAAEAAAAMAAwAAAAFAAEAAAAPAAwAAAAFAAMAAAAQAAwAAAAGAAEAAAARAAwAAAAGAAEAAAASAAwAAAAGAAIAAAASAA0AAAAGAAEAAAASAA4AAAAFAAIAAAARAA4AAAAGAAEAAAARAA0AAAAGAAEAAAATAA0AAAAGAAEAAAATAA4AAAAFAAMAAAATAA8AAAAGAAEAAAATABAAAAAGAAEAAAATABEAAAAGAAIAAAATABIAAAAGAAEAAAASABIAAAAGAAEAAAARABIAAAAGAAEAAAARABMAAAAGAAEAAAAQABIAAAAGAAEAAAAPABIAAAAGAAIAAAANABQAAAABAAIAAAAOABQAAAABAAIAAAAPABQAAAABAAIAAAAQABQAAAABAAIAAAARABQAAAABAAIAAAASABQAAAABAAIAAAATABQAAAADAAEAAAAMABQAAAAEAAEAAAAMABUAAAACAAIAAAALABUAAAABAAIAAAAKABUAAAABAAIAAAAJABUAAAABAAIAAAAIABUAAAAAAAIAAAAIABQAAAADAAEAAAAIABMAAAABAAEAAAAIABIAAAAGAAEAAAAIABEAAAAGAAEAAAAIABAAAAAFAAEAAAAIAA8AAAAGAAEAAAAIAA4AAAAGAAEAAAAIAA0AAAAGAAEAAAAIAAwAAAAGAAEAAAAIAAsAAAABAAEAAAAIAAoAAAAGAAEAAAAIAAkAAAAGAAEAAAAIAAgAAAAGAAEAAAAIAAcAAAAGAAEAAAAJAAcAAAABAAEAAAAKAAcAAAAGAAEAAAALAAcAAAAGAAEAAAAMAAcAAAAGAAIAAAANAAcAAAAGAAEAAAAOAAcAAAAGAAEAAAAPAAcAAAAGAAEAAAAQAAcAAAAGAAEAAAARAAcAAAAGAAEAAAASAAcAAAAGAAEAAAATAAcAAAAGAAEAAAAUAAcAAAAGAAEAAAAVAAcAAAAGAAEAAAAWAAcAAAAGAAEAAAAXAAcAAAAGAAEAAAAYAAcAAAAGAAEAAAAZAAcAAAAGAAEAAAAaAAcAAAAGAAEAAAAbAAcAAAAGAAEAAAAbAAgAAAAGAAEAAAAbAAkAAAAGAAEAAAAbAAoAAAAGAAMAAAAcAAoAAAAGAAEAAAAdAAoAAAAGAAEAAAAdAAkAAAAGAAEAAAAdAAgAAAAGAAEAAAAdAAcAAAAGAAEAAAAdAAYAAAABAAAAAAAeAAYAAAABAAAAAAAfAAYAAAABAAAAAAAgAAYAAAABAAAAAAAhAAYAAAABAAAAAAAiAAYAAAACAAAAAAAiAAcAAAACAAEAAAAiAAgAAAACAAEAAAAiAAkAAAACAAEAAAAiAAoAAAACAAEAAAAiAAsAAAACAAEAAAAiAAwAAAACAAEAAAAiAA0AAAACAAEAAAAiAA4AAAACAAEAAAAiAA8AAAACAAEAAAAiABAAAAACAAEAAAAiABEAAAACAAEAAAAiABIAAAACAAEAAAAiABMAAAACAAEAAAAiABQAAAACAAEAAAAiABUAAAACAAIAAAAhABUAAAABAAIAAAAgABUAAAABAAIAAAAfABUAAAABAAIAAAAeABUAAAABAAIAAAAdABUAAAABAAIAAAAdABQAAAAGAAMAAAAdABMAAAAGAAMAAAATABUAAAAAAAIAAAAUABUAAAABAAIAAAAVABUAAAABAAIAAAAWABUAAAABAAIAAAAXABUAAAABAAIAAAAYABUAAAABAAIAAAAaABUAAAABAAIAAAAZABUAAAABAAIAAAAbABUAAAABAAIAAAAbABQAAAAFAAMAAAAbABMAAAAGAAAAAAAaABMAAAAFAAIAAAAaABIAAAAGAAEAAAAaABEAAAAGAAEAAAAbABEAAAAGAAMAAAAcABEAAAAGAAEAAAAdABEAAAAFAAMAAAAdABIAAAAFAAIAAAAXAA8AAAAGAAEAAAAXAA4AAAAGAAEAAAAXAA0AAAAGAAEAAAAXAAwAAAAGAAEAAAAXAAsAAAAGAAIAAAAXAAoAAAAFAAMAAAAXAAkAAAAGAAEAAAAXAAgAAAAGAAEAAAAWAAgAAAAGAAEAAAAVAAgAAAAGAAIAAAAUAAgAAAAGAAEAAAATAAgAAAAGAAEAAAASAAgAAAAGAAEAAAARAAgAAAAGAAEAAAAQAAgAAAAGAAIAAAAPAAgAAAAGAAEAAAAOAAgAAAAGAAEAAAANAAgAAAAGAAEAAAAMAAgAAAAGAAEAAAALAAgAAAAGAAEAAAAKAAgAAAAGAAEAAAAJAAgAAAAGAAEAAAAJAAkAAAAGAAEAAAAJAAoAAAAGAAEAAAAJAAsAAAAGAAEAAAAJAAwAAAAGAAEAAAAJAA0AAAAGAAEAAAAJAA4AAAAGAAEAAAAJAA8AAAAGAAEAAAAJABAAAAAGAAEAAAAJABEAAAAGAAEAAAAJABIAAAAGAAEAAAAJABMAAAAGAAIAAAAJABQAAAAGAAEAAAAKABQAAAAFAAIAAAAKABMAAAAGAAEAAAAKABIAAAAGAAEAAAAKABEAAAAGAAEAAAAKABAAAAAGAAIAAAAKAA8AAAABAAEAAAAKAA4AAAAGAAEAAAAKAA0AAAAGAAEAAAAKAAwAAAAFAAIAAAAKAAsAAAAGAAEAAAAKAAoAAAAFAAEAAAAKAAkAAAAGAAEAAAALAAkAAAAGAAEAAAALAAoAAAAGAAEAAAALAAsAAAAGAAIAAAALAAwAAAAFAAEAAAAMAAsAAAAGAAEAAAAMAAoAAAAGAAEAAAAMAAkAAAAGAAEAAAANAAkAAAAFAAEAAAANAAoAAAAFAAAAAAANAAsAAAAGAAEAAAAOAAsAAAAGAAEAAAAOAAoAAAAGAAEAAAAOAAkAAAAGAAEAAAAPAAkAAAAGAAEAAAAPAAoAAAAGAAMAAAAPAAsAAAAGAAEAAAAQAAsAAAAGAAEAAAAQAAoAAAAGAAEAAAAQAAkAAAAFAAAAAAARAAkAAAAGAAEAAAARAAoAAAAGAAEAAAARAAsAAAAFAAMAAAASAAsAAAAGAAIAAAASAAoAAAAGAAEAAAASAAkAAAAGAAAAAAATAAkAAAAGAAEAAAATAAoAAAAFAAMAAAATAAsAAAAGAAIAAAATAAwAAAAGAAEAAAAUAAwAAAAGAAMAAAAUAAsAAAAGAAEAAAAUAAoAAAAGAAEAAAAUAAkAAAAGAAEAAAAVAAkAAAAGAAEAAAAVAAoAAAAGAAEAAAAVAAsAAAAGAAEAAAAVAAwAAAAGAAEAAAAVAA0AAAAGAAIAAAAUAA0AAAAGAAEAAAAUAA4AAAAGAAEAAAAUAA8AAAAGAAAAAAAUABAAAAAGAAEAAAAUABEAAAAFAAIAAAAUABIAAAAGAAEAAAAUABMAAAAGAAEAAAATABMAAAAGAAEAAAASABMAAAAGAAEAAAAUABQAAAAGAAMAAAAVABQAAAAGAAMAAAAVABMAAAAGAAEAAAAVABIAAAAFAAEAAAAVABEAAAAFAAAAAAAVABAAAAAGAAEAAAAVAA8AAAAFAAAAAAAVAA4AAAAGAAEAAAAWAA4AAAAGAAEAAAAWAA0AAAAFAAAAAAAWAAwAAAAGAAEAAAAWAAsAAAAGAAEAAAAWAAoAAAAGAAEAAAAWAAkAAAAGAAIAAAAWAA8AAAAGAAEAAAAWABAAAAAGAAEAAAAWABEAAAAGAAMAAAAWABIAAAAGAAEAAAAWABMAAAAGAAMAAAAWABQAAAAGAAIAAAAXABQAAAAFAAAAAAAXABMAAAAGAAEAAAAXABIAAAAFAAMAAAAXABEAAAAGAAEAAAAXABAAAAAGAAEAAAAYABAAAAAFAAIAAAAYAA8AAAAGAAEAAAAYAA4AAAAFAAIAAAAYAA0AAAAFAAIAAAAYAAwAAAAGAAEAAAAYAAsAAAAGAAEAAAAYAAoAAAAGAAEAAAAYAAkAAAAGAAEAAAAYAAgAAAAGAAEAAAAZAAgAAAAGAAEAAAAZAAkAAAAGAAEAAAAZAAoAAAAGAAEAAAAZAAsAAAAGAAEAAAAZAAwAAAAGAAEAAAAZAA0AAAAGAAEAAAAZAA4AAAAGAAMAAAAZAA8AAAAGAAEAAAAZABAAAAAGAAEAAAAZABEAAAAGAAEAAAAYABEAAAAGAAEAAAAYABIAAAAGAAEAAAAYABMAAAAFAAIAAAAYABQAAAAGAAEAAAAZABQAAAAGAAEAAAAZABMAAAAGAAEAAAAZABIAAAAGAAEAAAAaABQAAAAGAAEAAAAaABAAAAAGAAEAAAAaAA8AAAAGAAEAAAAaAA4AAAAGAAEAAAAaAA0AAAAGAAEAAAAaAAwAAAAGAAEAAAAaAAsAAAAGAAEAAAAaAAoAAAAGAAEAAAAaAAkAAAAGAAEAAAAaAAgAAAAGAAEAAAAbAAsAAAAGAAEAAAAbAAwAAAAGAAMAAAAbAA0AAAAGAAEAAAAbAA4AAAAGAAMAAAAbAA8AAAAGAAIAAAAbABAAAAAGAAEAAAAcABAAAAAGAAEAAAAcAA8AAAAGAAEAAAAcAA4AAAAGAAEAAAAcAA0AAAAGAAEAAAAcAAwAAAAGAAEAAAAcAAsAAAAGAAEAAAAdAAsAAAAGAAEAAAAdAAwAAAAGAAEAAAAdAA0AAAAFAAMAAAAdAA4AAAAGAAEAAAAdAA8AAAAFAAIAAAAdABAAAAAGAAEAAAAeABAAAAAGAAEAAAAeAA8AAAAFAAIAAAAeAA4AAAAFAAAAAAAeAA0AAAAGAAEAAAAeAAwAAAAGAAEAAAAeAAsAAAAGAAEAAAAeAAoAAAAGAAEAAAAeAAkAAAAGAAEAAAAeAAgAAAAGAAEAAAAeAAcAAAAGAAEAAAAfAAcAAAAFAAAAAAAfAAgAAAAGAAAAAAAfAAkAAAAGAAEAAAAfAAoAAAAGAAEAAAAfAAsAAAAGAAEAAAAfAAwAAAAFAAIAAAAfAA0AAAAFAAMAAAAfAA4AAAAGAAEAAAAfAA8AAAAGAAEAAAAfABAAAAAGAAEAAAAfABEAAAAGAAEAAAAeABEAAAAGAAEAAAAeABIAAAAGAAEAAAAeABMAAAAGAAEAAAAeABQAAAAGAAMAAAAfABQAAAAGAAEAAAAfABMAAAAGAAEAAAAfABIAAAAGAAMAAAAgABIAAAAFAAAAAAAgABEAAAAFAAIAAAAgABAAAAAGAAEAAAAgAA8AAAAFAAMAAAAgAA4AAAAFAAAAAAAgAA0AAAAGAAEAAAAgAAwAAAAGAAMAAAAgAAsAAAAGAAEAAAAgAAoAAAAFAAMAAAAgAAkAAAAGAAEAAAAgAAgAAAAGAAEAAAAgAAcAAAAGAAAAAAAhAAcAAAAGAAEAAAAhAAgAAAAGAAEAAAAhAAkAAAAGAAEAAAAhAAoAAAAGAAEAAAAhAAsAAAAGAAEAAAAhAAwAAAAGAAEAAAAhAA0AAAAGAAEAAAAhAA4AAAAGAAEAAAAhAA8AAAAGAAEAAAAhABAAAAAFAAMAAAAhABEAAAAGAAEAAAAhABIAAAAGAAEAAAAhABMAAAAFAAMAAAAgABMAAAAGAAEAAAAgABQAAAAGAAMAAAAhABQAAAAFAAIAAAALABMAAAAGAAEAAAALABQAAAAGAAEAAAAMABMAAAAGAAEAAAAMABIAAAAGAAEAAAANABIAAAAGAAEAAAANABMAAAAGAAEAAAAOABMAAAAGAAEAAAAPABMAAAAGAAEAAAAQABMAAAAGAAMAAAASABEAAAAGAAEAAAAHAAsAAAAGAAEAAAAHAAoAAAAGAAEAAAAHAAkAAAAGAAEAAAAHAAgAAAAGAAEAAAAGAAkAAAAGAAEAAAAGAAoAAAAGAAEAAAAGAAsAAAAGAAEAAAAGAAwAAAAGAAEAAAAGAA0AAAAGAAEAAAAGAA4AAAAGAAEAAAAGAA8AAAAGAAEAAAAHAAwAAAAGAAEAAAAHAA0AAAAFAAEAAAAHAA4AAAAGAAEAAAAHAA8AAAAGAAEAAAAJAAYAAAAGAAMAAAAJAAUAAAAGAAEAAAAJAAQAAAAGAAEAAAAIAAYAAAAGAAMAAAAHAAcAAAAGAAEAAAAGAAgAAAAGAAEAAAAGAAcAAAAGAAEAAAAGAAYAAAAGAAEAAAAHAAYAAAAGAAEAAAAHAAUAAAAGAAEAAAAFAAgAAAAGAAIAAAAFAAkAAAAGAAEAAAAFAAoAAAAGAAEAAAAFAAsAAAAGAAEAAAAKAAYAAAAGAAEAAAALAAYAAAAGAAIAAAALAAUAAAAFAAEAAAALAAQAAAAGAAEAAAAKAAQAAAAGAAEAAAAIAAUAAAAGAAEAAAAOAAYAAAAGAAEAAAAPAAYAAAAGAAEAAAAQAAYAAAAGAAEAAAARAAYAAAAFAAEAAAASAAYAAAAGAAEAAAATAAYAAAAGAAEAAAAUAAYAAAAGAAEAAAANAAYAAAAGAAEAAAAQAAUAAAAGAAEAAAARAAUAAAAGAAEAAAASAAUAAAAGAAEAAAATAAUAAAAGAAEAAAAUAAUAAAAGAAEAAAAVAAUAAAAGAAEAAAAWAAUAAAAGAAEAAAAXAAUAAAAGAAEAAAAYAAYAAAAGAAEAAAAZAAYAAAAGAAEAAAAaAAYAAAADAAAAAAAcAAkAAAAGAAEAAAAcAAcAAAAGAAEAAAAcAAgAAAAGAAEAAAAbAAYAAAABAAAAAAAaAAUAAAACAAEAAAAZAAUAAAAGAAEAAAAYAAUAAAAGAAEAAAAVAAYAAAAGAAEAAAAWAAYAAAAGAAEAAAAXAAYAAAAGAAEAAAAXAAQAAAAGAAEAAAAWAAQAAAAGAAEAAAAVAAQAAAAGAAEAAAAUAAQAAAAGAAEAAAAUAAMAAAAGAAEAAAATAAMAAAAGAAEAAAASAAMAAAAGAAEAAAARAAMAAAAGAAEAAAAQAAMAAAAGAAEAAAAPAAMAAAAGAAEAAAAOAAMAAAAGAAEAAAANAAMAAAAGAAEAAAAMAAMAAAAGAAEAAAAMAAUAAAAGAAEAAAAMAAQAAAAGAAEAAAANAAQAAAABAAEAAAANAAUAAAAGAAMAAAAOAAUAAAAGAAEAAAAMAAYAAAAGAAEAAAAPAAQAAAAGAAEAAAAOAAQAAAAGAAEAAAAKAAUAAAAGAAEAAAAFAAcAAAAGAAEAAAAEAAcAAAAGAAEAAAAFAAYAAAAFAAEAAAAGAAUAAAAGAAEAAAAEAAoAAAAFAAEAAAAEAAsAAAAGAAEAAAAEAAwAAAAFAAAAAAAFAAUAAAAFAAEAAAAFAAwAAAAGAAEAAAAFAA0AAAAGAAEAAAAFAA4AAAAGAAEAAAAGABAAAAAFAAEAAAAHABAAAAAGAAMAAAAFAA8AAAAGAAEAAAAEAA0AAAAGAAEAAAADAA0AAAAGAAEAAAACAA0AAAAGAAIAAAACAAwAAAAGAAEAAAABAAwAAAAGAAEAAAABAAsAAAAGAAEAAAABAAoAAAAGAAEAAAABAAkAAAAGAAEAAAACAAkAAAAGAAEAAAACAAgAAAAGAAEAAAADAAgAAAAGAAEAAAADAAkAAAAGAAEAAAADAAoAAAAFAAEAAAADAAsAAAAGAAMAAAADAAwAAAABAAEAAAACAAsAAAAFAAEAAAABAA0AAAAGAAEAAAABAAgAAAAGAAEAAAACAAcAAAAGAAEAAAADAAYAAAAGAAIAAAADAAcAAAAGAAEAAAAEAAkAAAAGAAEAAAAEAAgAAAAGAAEAAAAEAAYAAAAGAAEAAAAEAAUAAAAGAAEAAAACAAoAAAAGAAEAAAACAA4AAAAFAAEAAAACAA8AAAAGAAEAAAADAA8AAAAGAAEAAAAEAA8AAAAGAAIAAAAFABAAAAABAAEAAAAHABEAAAAGAAMAAAAHABMAAAAGAAEAAAAHABIAAAAGAAEAAAAGABIAAAAGAAEAAAAFABIAAAAGAAEAAAAEABMAAAAGAAEAAAAFABMAAAAGAAEAAAAGABMAAAAGAAEAAAAEABIAAAAGAAEAAAADABIAAAAFAAEAAAACABIAAAAFAAEAAAACABEAAAAGAAEAAAACABAAAAAGAAEAAAAEABAAAAAGAAEAAAADABEAAAAGAAEAAAABABEAAAAGAAEAAAAAABIAAAAGAAEAAAD//xIAAAAGAAEAAAD+/xIAAAAGAAEAAAD//xEAAAAGAAEAAAAAABEAAAAGAAEAAAAEABEAAAAGAAEAAAABABIAAAAGAAEAAAAEAA4AAAAGAAEAAAADABAAAAAGAAEAAAAFABEAAAAGAAEAAAAGABEAAAAFAAEAAAADAA4AAAAFAAAAAAABAA4AAAAGAAEAAAAAAA8AAAAFAAEAAAD//xAAAAAGAAEAAAD+/xAAAAAGAAEAAAD+/xEAAAAGAAEAAAD+/w8AAAAGAAEAAAD+/w4AAAAFAAEAAAD+/w0AAAAFAAEAAAD+/wwAAAAGAAEAAAD+/wsAAAAFAAAAAAD+/woAAAAGAAEAAAD+/wkAAAAGAAEAAAD+/wgAAAAGAAEAAAD+/wcAAAAGAAEAAAD+/wYAAAAGAAIAAAD//woAAAAGAAEAAAD//wsAAAAGAAEAAAD//wwAAAAGAAIAAAD//w0AAAABAAEAAAAAAA0AAAAGAAEAAAABAA8AAAAGAAEAAAABABAAAAAGAAEAAAAAABAAAAAGAAEAAAAAAA4AAAAGAAEAAAD//wkAAAAGAAEAAAD//wgAAAAGAAEAAAD//wcAAAAGAAEAAAD9/w8AAAAGAAEAAAD9/xAAAAAGAAEAAAD9/w4AAAAGAAEAAAD9/w0AAAAFAAEAAAD9/wwAAAAFAAEAAAD9/wsAAAAFAAEAAAD9/woAAAAFAAEAAAD9/wkAAAAGAAIAAAD//w4AAAABAAEAAAAAAAsAAAAGAAEAAAAAAAoAAAAGAAEAAAAAAAkAAAAGAAEAAAAAAAgAAAAGAAEAAAAAAAcAAAAFAAEAAAAAAAYAAAAGAAEAAAAAAAUAAAAGAAEAAAAAAAQAAAAGAAEAAAD//wQAAAAGAAEAAAD//wUAAAAGAAEAAAD//wYAAAAGAAEAAAAAAAwAAAAGAAEAAAACAAYAAAAGAAEAAAADAAUAAAAGAAEAAAADAAQAAAAGAAEAAAAEAAQAAAABAAEAAAAEAAMAAAAGAAEAAAAFAAMAAAAGAAEAAAAGAAMAAAAGAAEAAAAHAAMAAAAGAAEAAAAIAAMAAAAGAAEAAAAJAAMAAAAGAAEAAAAIAAQAAAAGAAEAAAACAAUAAAAGAAEAAAACAAQAAAAFAAEAAAABAAQAAAAGAAEAAAABAAUAAAAGAAEAAAABAAYAAAAFAAEAAAABAAcAAAAGAAEAAAD//w8AAAAGAAEAAAAFAAQAAAAGAAEAAAAGAAQAAAAGAAEAAAAHAAQAAAAGAAEAAAAPAAUAAAAGAAEAAAARAAQAAAAGAAEAAAASAAQAAAAGAAEAAAATAAQAAAAGAAEAAAAQAAQAAAAGAAEAAAALAAMAAAAGAAEAAAAKAAMAAAAGAAEAAAADAAMAAAAGAAEAAAACAAMAAAAGAAEAAAD+/wUAAAAGAAIAAAD9/wUAAAAGAAEAAAD9/wYAAAAGAAEAAAD9/wcAAAAFAAEAAAD9/wgAAAAFAAEAAAD+/wQAAAAGAAEAAAABAAMAAAAGAAEAAAAAAAMAAAAGAAEAAAD//wMAAAAGAAEAAAD+/wMAAAAGAAEAAAAcAAYAAAABAAAAAAAZAAQAAAAGAAEAAAAYAAQAAAAGAAEAAAAWAAMAAAAGAAEAAAAVAAMAAAAGAAEAAAD8/woAAAAGAAEAAAD8/wkAAAAGAAEAAAD8/wgAAAAGAAIAAAD8/wcAAAAFAAAAAAD8/wYAAAAGAAEAAAD8/wUAAAAGAAEAAAD8/wQAAAAEAAAAAAD9/wQAAAAGAAEAAAD9/wMAAAAEAAAAAAD+/wIAAAABAAAAAAD//wIAAAABAAAAAAAAAAIAAAABAAAAAAABAAIAAAABAAAAAAACAAIAAAABAAAAAAADAAIAAAABAAAAAAAEAAIAAAABAAAAAAAFAAIAAAABAAAAAAAGAAIAAAABAAAAAAAHAAIAAAABAAAAAAAIAAIAAAABAAAAAAAJAAIAAAABAAAAAAAKAAIAAAABAAAAAAALAAIAAAABAAAAAAAMAAIAAAABAAAAAAANAAIAAAABAAAAAAAOAAIAAAABAAAAAAAPAAIAAAABAAAAAAAQAAIAAAABAAAAAAARAAIAAAABAAAAAAASAAIAAAABAAAAAAATAAIAAAABAAAAAAAUAAIAAAABAAAAAAAVAAIAAAABAAAAAAAaAAMAAAACAAEAAAAZAAMAAAAGAAEAAAAYAAMAAAAGAAEAAAAXAAMAAAAGAAEAAAAWAAIAAAABAAAAAAAXAAIAAAABAAAAAAAYAAIAAAABAAAAAAAZAAIAAAABAAAAAAAHABQAAAABAAIAAAAGABQAAAABAAIAAAAFABQAAAABAAIAAAAEABQAAAABAAIAAAADABQAAAAAAAIAAAADABMAAAADAAEAAAACABMAAAABAAIAAAABABMAAAABAAIAAAAAABMAAAABAAIAAAD//xMAAAABAAIAAAD+/xMAAAABAAIAAAD9/xMAAAAAAAIAAAD9/xIAAAAAAAEAAAD9/xEAAAADAAEAAAD8/xEAAAAAAAIAAAD8/xAAAAAAAAEAAAD8/w8AAAAAAAEAAAD8/w4AAAAAAAEAAAD8/w0AAAAAAAEAAAD8/wsAAAADAAEAAAD8/wwAAAAAAAEAAAD7/wsAAAAAAAIAAAD7/woAAAAAAAEAAAD7/wkAAAAAAAEAAAD7/wgAAAAAAAEAAAD7/wcAAAAAAAEAAAD7/wYAAAAAAAEAAAD7/wUAAAAAAAEAAAD7/wQAAAAAAAAAAAD8/wMAAAAAAAAAAAD9/wIAAAAAAAAAAAAaAAIAAAACAAAAAAAaAAQAAAACAAEAAAAcABUAAAABAAIAAAAbABIAAAAGAAEAAAAcABQAAAAFAAIAAAAcABMAAAAFAAIAAAAcABIAAAAGAAAAAAA=")
+tile_set = SubResource("TileSet_uu0hj")
+
+[node name="Foliage" type="Node2D" parent="Environment" unique_id=1303926125]
+
+[node name="Grass" parent="Environment/Foliage" unique_id=1997386332 instance=ExtResource("3_3e81p")]
+position = Vector2(223, 246)
+
+[node name="Grass2" parent="Environment/Foliage" unique_id=1123561186 instance=ExtResource("3_3e81p")]
+position = Vector2(79, 182)
+
+[node name="Grass3" parent="Environment/Foliage" unique_id=1326584327 instance=ExtResource("3_3e81p")]
+position = Vector2(32, 175)
+
+[node name="Grass4" parent="Environment/Foliage" unique_id=1013825840 instance=ExtResource("3_3e81p")]
+position = Vector2(123, 124)
+
+[node name="Grass5" parent="Environment/Foliage" unique_id=1342101626 instance=ExtResource("3_3e81p")]
+position = Vector2(136, 142)
+
+[node name="Grass6" parent="Environment/Foliage" unique_id=725046860 instance=ExtResource("3_3e81p")]
+position = Vector2(266, 93)
+
+[node name="Grass7" parent="Environment/Foliage" unique_id=1748048368 instance=ExtResource("3_3e81p")]
+position = Vector2(326, 95)
+
+[node name="Grass8" parent="Environment/Foliage" unique_id=2099930290 instance=ExtResource("3_3e81p")]
+position = Vector2(150, 104)
+
+[node name="Grass9" parent="Environment/Foliage" unique_id=1453017846 instance=ExtResource("3_3e81p")]
+position = Vector2(226, 75)
+
+[node name="Grass10" parent="Environment/Foliage" unique_id=136636402 instance=ExtResource("3_3e81p")]
+position = Vector2(338, 86)
+
+[node name="Grass11" parent="Environment/Foliage" unique_id=1023420912 instance=ExtResource("3_3e81p")]
+position = Vector2(355, 108)
+
+[node name="Grass12" parent="Environment/Foliage" unique_id=1482012415 instance=ExtResource("3_3e81p")]
+position = Vector2(231, 201)
+
+[node name="Grass13" parent="Environment/Foliage" unique_id=987025634 instance=ExtResource("3_3e81p")]
+position = Vector2(327, 259)
+
+[node name="Grass14" parent="Environment/Foliage" unique_id=1291659310 instance=ExtResource("3_3e81p")]
+position = Vector2(446, 154)
+
+[node name="Grass15" parent="Environment/Foliage" unique_id=1538535162 instance=ExtResource("3_3e81p")]
+position = Vector2(406, 196)
+
+[node name="Grass16" parent="Environment/Foliage" unique_id=614679911 instance=ExtResource("3_3e81p")]
+position = Vector2(310, 106)
+
+[node name="Grass17" parent="Environment/Foliage" unique_id=1128022812 instance=ExtResource("3_3e81p")]
+position = Vector2(256, 101)
+
+[node name="Grass18" parent="Environment/Foliage" unique_id=899420356 instance=ExtResource("3_3e81p")]
+position = Vector2(302, 165)
+
+[node name="Grass19" parent="Environment/Foliage" unique_id=1750970460 instance=ExtResource("3_3e81p")]
+position = Vector2(191, 126)
+
+[node name="Grass20" parent="Environment/Foliage" unique_id=108571318 instance=ExtResource("3_3e81p")]
+position = Vector2(122, 162)
+
+[node name="Grass21" parent="Environment/Foliage" unique_id=1919739801 instance=ExtResource("3_3e81p")]
+position = Vector2(105, 140)
+
+[node name="Grass22" parent="Environment/Foliage" unique_id=1982043849 instance=ExtResource("3_3e81p")]
+position = Vector2(114, 148)
+
+[node name="Grass74" parent="Environment/Foliage" unique_id=1839368947 instance=ExtResource("3_3e81p")]
+position = Vector2(125, 153)
+
+[node name="Grass75" parent="Environment/Foliage" unique_id=2079338025 instance=ExtResource("3_3e81p")]
+position = Vector2(115, 156)
+
+[node name="Grass76" parent="Environment/Foliage" unique_id=1362292965 instance=ExtResource("3_3e81p")]
+position = Vector2(121, 148)
+
+[node name="Grass77" parent="Environment/Foliage" unique_id=1928510731 instance=ExtResource("3_3e81p")]
+position = Vector2(134, 156)
+
+[node name="Grass78" parent="Environment/Foliage" unique_id=1180909205 instance=ExtResource("3_3e81p")]
+position = Vector2(129, 147)
+
+[node name="Grass79" parent="Environment/Foliage" unique_id=1183942510 instance=ExtResource("3_3e81p")]
+position = Vector2(137, 150)
+
+[node name="Grass80" parent="Environment/Foliage" unique_id=1140674046 instance=ExtResource("3_3e81p")]
+position = Vector2(130, 141)
+
+[node name="Grass81" parent="Environment/Foliage" unique_id=647471569 instance=ExtResource("3_3e81p")]
+position = Vector2(129, 135)
+
+[node name="Grass82" parent="Environment/Foliage" unique_id=584380183 instance=ExtResource("3_3e81p")]
+position = Vector2(117, 135)
+
+[node name="Grass83" parent="Environment/Foliage" unique_id=2046341241 instance=ExtResource("3_3e81p")]
+position = Vector2(116, 143)
+
+[node name="Grass84" parent="Environment/Foliage" unique_id=2094563169 instance=ExtResource("3_3e81p")]
+position = Vector2(138, 135)
+
+[node name="Grass85" parent="Environment/Foliage" unique_id=2143570900 instance=ExtResource("3_3e81p")]
+position = Vector2(145, 143)
+
+[node name="Grass86" parent="Environment/Foliage" unique_id=353229515 instance=ExtResource("3_3e81p")]
+position = Vector2(147, 152)
+
+[node name="Grass87" parent="Environment/Foliage" unique_id=22724543 instance=ExtResource("3_3e81p")]
+position = Vector2(160, 150)
+
+[node name="Grass88" parent="Environment/Foliage" unique_id=912109141 instance=ExtResource("3_3e81p")]
+position = Vector2(153, 160)
+
+[node name="Grass89" parent="Environment/Foliage" unique_id=1206452375 instance=ExtResource("3_3e81p")]
+position = Vector2(144, 163)
+
+[node name="Grass90" parent="Environment/Foliage" unique_id=1089930780 instance=ExtResource("3_3e81p")]
+position = Vector2(135, 162)
+
+[node name="Grass91" parent="Environment/Foliage" unique_id=1738352178 instance=ExtResource("3_3e81p")]
+position = Vector2(154, 141)
+
+[node name="Grass92" parent="Environment/Foliage" unique_id=970312465 instance=ExtResource("3_3e81p")]
+position = Vector2(191, 153)
+
+[node name="Grass93" parent="Environment/Foliage" unique_id=1522376262 instance=ExtResource("3_3e81p")]
+position = Vector2(220, 163)
+
+[node name="Grass94" parent="Environment/Foliage" unique_id=665615756 instance=ExtResource("3_3e81p")]
+position = Vector2(214, 149)
+
+[node name="Grass95" parent="Environment/Foliage" unique_id=1645933041 instance=ExtResource("3_3e81p")]
+position = Vector2(205, 159)
+
+[node name="Grass96" parent="Environment/Foliage" unique_id=330639942 instance=ExtResource("3_3e81p")]
+position = Vector2(208, 165)
+
+[node name="Grass97" parent="Environment/Foliage" unique_id=1156838881 instance=ExtResource("3_3e81p")]
+position = Vector2(218, 175)
+
+[node name="Grass98" parent="Environment/Foliage" unique_id=979665759 instance=ExtResource("3_3e81p")]
+position = Vector2(210, 173)
+
+[node name="Grass99" parent="Environment/Foliage" unique_id=160933722 instance=ExtResource("3_3e81p")]
+position = Vector2(231, 170)
+
+[node name="Grass100" parent="Environment/Foliage" unique_id=676155716 instance=ExtResource("3_3e81p")]
+position = Vector2(227, 160)
+
+[node name="Grass23" parent="Environment/Foliage" unique_id=473051921 instance=ExtResource("3_3e81p")]
+position = Vector2(233, 238)
+
+[node name="Grass24" parent="Environment/Foliage" unique_id=1756809718 instance=ExtResource("3_3e81p")]
+position = Vector2(122, 141)
+
+[node name="Grass25" parent="Environment/Foliage" unique_id=412922037 instance=ExtResource("3_3e81p")]
+position = Vector2(169, 233)
+
+[node name="Grass26" parent="Environment/Foliage" unique_id=1786329466 instance=ExtResource("3_3e81p")]
+position = Vector2(148, 314)
+
+[node name="Grass27" parent="Environment/Foliage" unique_id=1084707240 instance=ExtResource("3_3e81p")]
+position = Vector2(78, 254)
+
+[node name="Grass28" parent="Environment/Foliage" unique_id=827370679 instance=ExtResource("3_3e81p")]
+position = Vector2(109, 283)
+
+[node name="Grass29" parent="Environment/Foliage" unique_id=1817346206 instance=ExtResource("3_3e81p")]
+position = Vector2(71, 279)
+
+[node name="Grass30" parent="Environment/Foliage" unique_id=186274770 instance=ExtResource("3_3e81p")]
+position = Vector2(38, 287)
+
+[node name="Grass31" parent="Environment/Foliage" unique_id=980507588 instance=ExtResource("3_3e81p")]
+position = Vector2(-34, 234)
+
+[node name="Grass32" parent="Environment/Foliage" unique_id=200127859 instance=ExtResource("3_3e81p")]
+position = Vector2(-37, 208)
+
+[node name="Grass33" parent="Environment/Foliage" unique_id=1962723532 instance=ExtResource("3_3e81p")]
+position = Vector2(-42, 173)
+
+[node name="Grass34" parent="Environment/Foliage" unique_id=901363176 instance=ExtResource("3_3e81p")]
+position = Vector2(-50, 163)
+
+[node name="Grass35" parent="Environment/Foliage" unique_id=1199240362 instance=ExtResource("3_3e81p")]
+position = Vector2(7, 269)
+
+[node name="Grass36" parent="Environment/Foliage" unique_id=116171782 instance=ExtResource("3_3e81p")]
+position = Vector2(411, 231)
+
+[node name="Grass37" parent="Environment/Foliage" unique_id=2089310199 instance=ExtResource("3_3e81p")]
+position = Vector2(43, 67)
+
+[node name="Grass38" parent="Environment/Foliage" unique_id=167127561 instance=ExtResource("3_3e81p")]
+position = Vector2(73, 75)
+
+[node name="Grass39" parent="Environment/Foliage" unique_id=872236707 instance=ExtResource("3_3e81p")]
+position = Vector2(2, 61)
+
+[node name="Grass40" parent="Environment/Foliage" unique_id=1264135796 instance=ExtResource("3_3e81p")]
+position = Vector2(-21, 72)
+
+[node name="Grass41" parent="Environment/Foliage" unique_id=589622451 instance=ExtResource("3_3e81p")]
+position = Vector2(-34, 108)
+
+[node name="Grass42" parent="Environment/Foliage" unique_id=1583122415 instance=ExtResource("3_3e81p")]
+position = Vector2(58, 237)
+
+[node name="Grass57" parent="Environment/Foliage" unique_id=1898644528 instance=ExtResource("3_3e81p")]
+position = Vector2(132, 258)
+
+[node name="Grass58" parent="Environment/Foliage" unique_id=1261288411 instance=ExtResource("3_3e81p")]
+position = Vector2(148, 239)
+
+[node name="Grass59" parent="Environment/Foliage" unique_id=1583296803 instance=ExtResource("3_3e81p")]
+position = Vector2(169, 217)
+
+[node name="Grass60" parent="Environment/Foliage" unique_id=1217195084 instance=ExtResource("3_3e81p")]
+position = Vector2(213, 217)
+
+[node name="Grass61" parent="Environment/Foliage" unique_id=633559990 instance=ExtResource("3_3e81p")]
+position = Vector2(252, 224)
+
+[node name="Grass62" parent="Environment/Foliage" unique_id=1092575551 instance=ExtResource("3_3e81p")]
+position = Vector2(259, 206)
+
+[node name="Grass63" parent="Environment/Foliage" unique_id=1625926265 instance=ExtResource("3_3e81p")]
+position = Vector2(238, 176)
+
+[node name="Grass64" parent="Environment/Foliage" unique_id=641687568 instance=ExtResource("3_3e81p")]
+position = Vector2(208, 132)
+
+[node name="Grass65" parent="Environment/Foliage" unique_id=100647946 instance=ExtResource("3_3e81p")]
+position = Vector2(241, 151)
+
+[node name="Grass66" parent="Environment/Foliage" unique_id=100879207 instance=ExtResource("3_3e81p")]
+position = Vector2(171, 96)
+
+[node name="Grass67" parent="Environment/Foliage" unique_id=66156953 instance=ExtResource("3_3e81p")]
+position = Vector2(129, 72)
+
+[node name="Grass68" parent="Environment/Foliage" unique_id=1454830660 instance=ExtResource("3_3e81p")]
+position = Vector2(92, 92)
+
+[node name="Grass69" parent="Environment/Foliage" unique_id=227884182 instance=ExtResource("3_3e81p")]
+position = Vector2(49, 101)
+
+[node name="Grass70" parent="Environment/Foliage" unique_id=1996310235 instance=ExtResource("3_3e81p")]
+position = Vector2(18, 98)
+
+[node name="Grass71" parent="Environment/Foliage" unique_id=1956703115 instance=ExtResource("3_3e81p")]
+position = Vector2(37, 117)
+
+[node name="Grass72" parent="Environment/Foliage" unique_id=830585411 instance=ExtResource("3_3e81p")]
+position = Vector2(2, 108)
+
+[node name="Grass73" parent="Environment/Foliage" unique_id=827112345 instance=ExtResource("3_3e81p")]
+position = Vector2(-56, 123)
+
+[node name="Grass50" parent="Environment/Foliage" unique_id=1808159013 instance=ExtResource("3_3e81p")]
+position = Vector2(1, 209)
+
+[node name="Grass51" parent="Environment/Foliage" unique_id=1451368558 instance=ExtResource("3_3e81p")]
+position = Vector2(185, 272)
+
+[node name="Grass52" parent="Environment/Foliage" unique_id=1801888428 instance=ExtResource("3_3e81p")]
+position = Vector2(197, 170)
+
+[node name="Grass53" parent="Environment/Foliage" unique_id=1164442408 instance=ExtResource("3_3e81p")]
+position = Vector2(172, 184)
+
+[node name="Grass54" parent="Environment/Foliage" unique_id=462656163 instance=ExtResource("3_3e81p")]
+position = Vector2(148, 205)
+
+[node name="Grass55" parent="Environment/Foliage" unique_id=763094902 instance=ExtResource("3_3e81p")]
+position = Vector2(111, 223)
+
+[node name="Grass56" parent="Environment/Foliage" unique_id=1532596973 instance=ExtResource("3_3e81p")]
+position = Vector2(168, 242)
+
+[node name="Grass43" parent="Environment/Foliage" unique_id=287060537 instance=ExtResource("3_3e81p")]
+position = Vector2(-31, 256)
+
+[node name="Grass44" parent="Environment/Foliage" unique_id=1669735735 instance=ExtResource("3_3e81p")]
+position = Vector2(-3, 254)
+
+[node name="Grass45" parent="Environment/Foliage" unique_id=1326360110 instance=ExtResource("3_3e81p")]
+position = Vector2(-19, 245)
+
+[node name="Grass46" parent="Environment/Foliage" unique_id=1566364141 instance=ExtResource("3_3e81p")]
+position = Vector2(9, 254)
+
+[node name="Grass47" parent="Environment/Foliage" unique_id=1447523954 instance=ExtResource("3_3e81p")]
+position = Vector2(31, 271)
+
+[node name="Grass48" parent="Environment/Foliage" unique_id=682812311 instance=ExtResource("3_3e81p")]
+position = Vector2(32, 212)
+
+[node name="Grass49" parent="Environment/Foliage" unique_id=1674776238 instance=ExtResource("3_3e81p")]
+position = Vector2(-10, 286)
+
+[node name="Minions" type="Node2D" parent="Environment" unique_id=1344436488]
+
+[node name="MinionTest" parent="Environment/Minions" unique_id=1959686566 instance=ExtResource("2_84vya")]
+position = Vector2(199, 191)
+
+[node name="MinionTest5" parent="Environment/Minions" unique_id=485308313 instance=ExtResource("2_84vya")]
+position = Vector2(201, 229)
+
+[node name="MinionTest3" parent="Environment/Minions" unique_id=1738651851 instance=ExtResource("2_84vya")]
+position = Vector2(135, 174)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest8" parent="Environment/Minions" unique_id=610071003 instance=ExtResource("2_84vya")]
+position = Vector2(80, 224)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest9" parent="Environment/Minions" unique_id=1347589767 instance=ExtResource("2_84vya")]
+position = Vector2(98, 188)
+element = 2
+texture = "uid://w4nw1k0qbqnv"
+
+[node name="MinionTest4" parent="Environment/Minions" unique_id=618482367 instance=ExtResource("2_84vya")]
+position = Vector2(279, 249)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest10" parent="Environment/Minions" unique_id=1184489421 instance=ExtResource("2_84vya")]
+position = Vector2(339, 220)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest11" parent="Environment/Minions" unique_id=200580290 instance=ExtResource("2_84vya")]
+position = Vector2(322, 287)
+element = 3
+texture = "uid://jew1sjk6ux1u"
+
+[node name="MinionTest2" parent="Environment/Minions" unique_id=1384903562 instance=ExtResource("2_84vya")]
+position = Vector2(388, 156)
+element = 1
+texture = "uid://eujy5j8tlopn"
+
+[node name="MinionTest7" parent="Environment/Minions" unique_id=2108967314 instance=ExtResource("2_84vya")]
+position = Vector2(338, 161)
+element = 1
+texture = "uid://eujy5j8tlopn"
+
+[node name="MinionTest6" parent="Environment/Minions" unique_id=1121928411 instance=ExtResource("2_84vya")]
+position = Vector2(271, 175)
+element = 1
+texture = "uid://eujy5j8tlopn"
+
+[node name="Player" parent="." unique_id=389095423 groups=["Player"] instance=ExtResource("3_cw4as")]
+unique_name_in_owner = true
+position = Vector2(-12, 151)
+
+[node name="DeathMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=109069560]
+stream = ExtResource("11_hux2q")
+bus = &"Music"
+parameters/looping = true
+script = ExtResource("12_n1gr0")
+player_name = "death_music_player"
+manager_type = 1
+manager_name_2d = &"AudioManager"
+manager_name_3d = &"AudioManager"
+
+[node name="HUD" parent="." unique_id=1159893243 instance=ExtResource("6_7ac3l")]

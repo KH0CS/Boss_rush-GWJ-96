@@ -30,8 +30,6 @@ var external_velocity_decay: float = 5.0
 var move_velocity: Vector2 = Vector2.ZERO
 var external_velocity: Vector2 = Vector2.ZERO
 
-var in_vacuum_radius: bool = false
-
 func _ready() -> void:
 	add_to_group("minions") # This makes it easier to find the minion, and make references
 	

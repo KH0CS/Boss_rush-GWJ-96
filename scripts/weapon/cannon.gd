@@ -1,6 +1,7 @@
 class_name Cannon
 extends Node2D
 
+#signal
 #signal storage_changed(current_storage: Array[Type.elements])
 
 @export var player: Player
@@ -47,9 +48,7 @@ func _input(_event: InputEvent) -> void:
 		charge_time = 0.0
 	
 	if Input.is_action_pressed("vacuum") and is_charging == false and gun_storage.size() < max_storage_size:
-		vacuum_active = true
-		if SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG not in AudioManager.active_looping_sounds.keys():
-			AudioManager.play_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
+		vacuum(true)
 	
 	if Input.is_action_just_pressed("vacuum") and gun_storage.size() >= max_storage_size:
 		AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
@@ -59,10 +58,7 @@ func _input(_event: InputEvent) -> void:
 		release_attack(charge_time)
 	
 	if Input.is_action_just_released("vacuum") and vacuum_active:
-		vacuum_active = false
-		minions_in_vacuum.clear()
-		if SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG in AudioManager.active_looping_sounds.keys():
-			AudioManager.stop_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
+		vacuum(false)
 
 func _process(delta):
 	# Calculate the angle to the mouse instead of instantly looking at it
@@ -115,9 +111,8 @@ func _physics_process(_delta: float) -> void:
 					
 				# cancels the vacuum if the storage is full 
 				if gun_storage.size() == max_storage_size:
-					vacuum_active = false
-					minions_in_vacuum.clear()
 					AudioManager.play_audio(SoundEffect.SOUND_EFFECT_TYPE.BEEPS)
+					vacuum(false)
 
 
 func release_attack(time_held: float) -> void:
@@ -128,24 +123,6 @@ func release_attack(time_held: float) -> void:
 		do_charged_attack(charge_ratio)
 	
 	is_charging = false
-	cannon_effects.shoot()
-	
-	
-	# push back effect of the cannon thingy!!
-	if has_node("RecoilTween"):
-		get_node("RecoilTween").kill()
-
-	var tween := create_tween()
-	tween.set_trans(Tween.TRANS_QUAD)
-	
-	# push back opposite the direction gun is facing
-	var back_dir := Vector2.RIGHT.rotated(rotation + PI)
-	var recoil_pos := rest_position + back_dir * recoil_offset
-
-	tween.tween_property(self, "position", recoil_pos, recoil_out_time) \
-		.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "position", rest_position, recoil_return_time) \
-		.set_ease(Tween.EASE_OUT)
 
 func do_charged_attack(power: float) -> void:
 	## Copy the first 3 elements from gun_storage
@@ -168,6 +145,25 @@ func do_charged_attack(power: float) -> void:
 	for i in range(max_ammo_ammount):
 		gun_storage.pop_front()
 	EventBus.storage_changed.emit(gun_storage)
+	
+	
+	# push back effect of the cannon thingy!!
+	if has_node("RecoilTween"):
+		get_node("RecoilTween").kill()
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	
+	# push back opposite the direction gun is facing
+	var back_dir := Vector2.RIGHT.rotated(rotation + PI)
+	var recoil_pos := rest_position + back_dir * recoil_offset
+
+	tween.tween_property(self, "position", recoil_pos, recoil_out_time) \
+		.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position", rest_position, recoil_return_time) \
+		.set_ease(Tween.EASE_OUT)
+	
+	cannon_effects.shoot()
 
 
 func add_ammo(ammo_type: Type.elements) -> void:
@@ -175,6 +171,16 @@ func add_ammo(ammo_type: Type.elements) -> void:
 	#print(gun_storage)
 	EventBus.storage_changed.emit(gun_storage)
 
+func vacuum(activate: bool) -> void:
+	if activate:
+		vacuum_active = true
+		if SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG not in AudioManager.active_looping_sounds.keys():
+			AudioManager.play_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
+	else:
+		vacuum_active = false
+		minions_in_vacuum.clear()
+		if SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG in AudioManager.active_looping_sounds.keys():
+			AudioManager.stop_loop(SoundEffect.SOUND_EFFECT_TYPE.SUCTION_LONG)
 
 #func _on_vaccum_body_entered(body: Node2D) -> void:
 #	if vacuum_active and body is Minion:

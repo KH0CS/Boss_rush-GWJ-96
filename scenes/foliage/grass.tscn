@@ -1,19 +1,20 @@
 [gd_scene format=3 uid="uid://bmwbqtdq7445p"]
 
-[ext_resource type="Texture2D" uid="uid://d2ia37v3dufny" path="res://assets/sprites/foliage/grass_1.png" id="1_13vkh"]
 [ext_resource type="Script" uid="uid://uysfpgag3j0" path="res://scenes/foliage/grass.gd" id="1_awxdc"]
+[ext_resource type="Texture2D" uid="uid://dmwq27raob3km" path="res://assets/sprites/foliage/grass_0001.png" id="2_awxdc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0x4cu"]
 size = Vector2(8, 8)
 
 [node name="Grass" type="Area2D" unique_id=1997386332]
+collision_mask = 3
 script = ExtResource("1_awxdc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1054856252]
 shape = SubResource("RectangleShape2D_0x4cu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=341654698]
-texture = ExtResource("1_13vkh")
+texture = ExtResource("2_awxdc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
