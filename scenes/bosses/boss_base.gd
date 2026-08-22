@@ -21,7 +21,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func take_damage(amount: float) -> void:
+func take_damage(amount: float) -> bool:
 	print("Boss took " + str(amount) + " damage")
 	current_health -= amount
 	# TODO: play sfx
+	
+	## currently just return true becuse boss has no invincible attacks
+	return true

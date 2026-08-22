@@ -115,11 +115,15 @@ _data = {
 &"walk_forward": SubResource("Animation_p47bc")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=389095423 node_paths=PackedStringArray("gun")]
+[node name="Player" type="CharacterBody2D" unique_id=389095423 node_paths=PackedStringArray("gun", "dash_timer", "invincible_timer")]
 script = ExtResource("1_g2els")
 gun = NodePath("Cannon")
 friction = 300.0
 external_velocity_decay = 10.0
+dash_timer = NodePath("DashTimer")
+invincible_timer = NodePath("InvinicbiltyTimer")
+heal_icon = "uid://b5ixqsu525wym"
+heal_per_charge = 15.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1583880687]
 shape = SubResource("CapsuleShape2D_og67c")
@@ -156,3 +160,10 @@ show_percentage = false
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_5gtgg")
 autoplay = &"idle"
+
+[node name="DashTimer" type="Timer" parent="." unique_id=1692030540]
+
+[node name="InvinicbiltyTimer" type="Timer" parent="." unique_id=1763970697]
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="InvinicbiltyTimer" to="." method="_on_invinicbilty_timer_timeout"]

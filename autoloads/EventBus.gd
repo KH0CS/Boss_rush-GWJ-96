@@ -1,5 +1,6 @@
 extends Node
 
+signal player_healing_charges_changed(current_charges: int)
 signal player_health_changed(current_health)
 signal player_died
 
