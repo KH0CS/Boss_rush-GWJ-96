@@ -41,7 +41,7 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("debug_damage"):
 		take_damage(10)
-		apply_force((get_global_mouse_position() - global_position).normalized() * 250)
+		apply_force((get_global_mouse_position() - global_position).normalized() * 500)
 
 
 func _physics_process(delta: float) -> void:
