@@ -12,7 +12,6 @@ func _ready() -> void:
 	EventBus.player_died.connect(_on_player_died)
 	AudioManager.stop_all_music(2)
 
-
 func _on_player_died() -> void:
 	AudioManager.stop_all_music(2)
 	AudioManager.play_music(MusicTrack.TRACK_TYPE.DEATH_SCREEN,0.5)
