@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dlq1uwp72foeb"]
+[gd_scene format=3 uid="uid://6wu4ibdxmxrn"]
 
 [ext_resource type="PackedScene" uid="uid://3w7d8nqis2ui" path="res://scenes/player/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://d3hb374lpu7ki" path="res://scenes/enemies/minions/MinionBase.tscn" id="2_71j4m"]
